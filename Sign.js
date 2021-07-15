@@ -7,11 +7,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
     const browser = await puppeteer.launch({
         headless: false,
-        executablePath: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
         //userDataDir: './userDataDir',
-        args: [
-            '--proxy-server=127.0.0.1:7890', // 只能是http代理端口？
-        ]
     });
     
     const page = await browser.newPage();
