@@ -21,3 +21,7 @@ jobs:
       - name: Run AutoSign-sehuatang
         run: |
           node AutoSign-sehuatang.js      
+      - name: Run AutoSign-sketchup
+        run: |
+          node AutoSign-sketchup.js      
+
