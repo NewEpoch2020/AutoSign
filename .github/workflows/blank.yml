@@ -1,22 +1,20 @@
-name: Hello World
+name: Sign In
 on: push
 jobs:
-  my_first_job:
-    name: My first job
+  Sketchup_Sign_In:
+    name: sketchup Sign In
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@master
-    - name: Run a single-line script
-      run: echo "Hello World!"
-  my_second_job:
-    name: My second job
-    runs-on: macos-latest
-    steps:
-    - name: Run a multi-line script
-      env:
-        MY_VAR: Hello World!
-        MY_NAME: P3TERX
-      run: |
-        echo $MY_VAR
-        echo My name is $MY_NAME
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Install dependencies
+        run: npm ci	
+      - name: Run Sign
+        env:
+          Sketchup_COOKIES: ${{secrets.Sketchup_COOKIES}}
+        run: |
+          node Sign.js
