@@ -402,7 +402,7 @@ puppeteer.use(StealthPlugin());
     });  */
     await page.waitForTimeout(1000);
     await page.click('#JD_sign');
-    //await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
     //await page.click('#wheelcanvas+img');
     await browser.close();
 
