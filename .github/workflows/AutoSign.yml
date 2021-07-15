@@ -4,7 +4,7 @@ on:
     branches: main
   workflow_dispatch:
   schedule:
-    - cron: "01 16 * * *"
+    - cron: "01 16 * * *" # https://datetime360.com/cn/utc-beijing-time/
 jobs:
   Sketchup_Auto_Sign:
     name: sketchup Auto Sign
