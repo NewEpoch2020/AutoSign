@@ -3,7 +3,7 @@ on:
   push:
     branches: main
   schedule:
-    - cron: "41 14 * * *"
+    - cron: "01 16 * * *"
 jobs:
   Sketchup_Auto_Sign:
     name: sketchup Auto Sign
