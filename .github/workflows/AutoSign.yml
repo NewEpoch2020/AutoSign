@@ -18,7 +18,7 @@ jobs:
           node-version: "14.x"
       - name: Install dependencies
         run: npm ci	
-      - name: Run AutoSign-sketchup
+      - name: Run AutoSign-sehuatang
         run: |
-          node AutoSign-sketchup.js      
+          node AutoSign-sehuatang.js  
 
