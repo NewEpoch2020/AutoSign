@@ -5,7 +5,7 @@ async function autoSign(){
     const StealthPlugin = require('puppeteer-extra-plugin-stealth');
     puppeteer.use(StealthPlugin());
     const axios = require('axios');
-    const config = require("./config/autoSign");
+    const config = require("./config");
     const barkURL = "https://www.hidjnuiot78945huoridfngjkfnhf.xyz/J8AAL9oQYfySSKjgUSNQ9i/"
     
     const browser = await puppeteer.launch({
@@ -38,6 +38,7 @@ async function autoSign(){
             console.log("Failed to sign in sehuatang!");
             axios.post(barkURL + '[Sign] Failed to sign in sehuatang!');
         }
+        await browser.close();
                
     }   
 }
