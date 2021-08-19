@@ -192,7 +192,7 @@ async function autoSign(){
         ]
 
     const browser = await puppeteer.launch({
-        headless: false
+        headless: true
     });
 
      await Promise.all([ //没有顺序的概念
