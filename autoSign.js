@@ -5,16 +5,13 @@ async function autoSign(){
     const StealthPlugin = require('puppeteer-extra-plugin-stealth');
     puppeteer.use(StealthPlugin());
     const axios = require('axios');
-    const config = require("./config");
     const barkURL = "https://www.hidjnuiot78945huoridfngjkfnhf.xyz/J8AAL9oQYfySSKjgUSNQ9i/"
     
     const browser = await puppeteer.launch({
         headless: false
     });
 
-    const {
-        cookies_Sehuatang,
-      } = config;
+    const cookies_Sehuatang = process.env.SEHUATANG_COOKIES;
 
      await Promise.all([ //没有顺序的概念
         sehuatang(),
