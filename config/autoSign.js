@@ -1,3 +1,3 @@
 module.exports = {
-  cookies_Sehuatang: process.env.Sehuatang_COOKIES || "",
+  cookies_Sehuatang: process.env.SEHUATANG_COOKIES || "",
 };
