@@ -1,4 +1,4 @@
-autoSign()
+autoSign();
 
 async function autoSign(){
     const puppeteer = require('puppeteer-extra');
