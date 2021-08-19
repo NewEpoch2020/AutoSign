@@ -216,6 +216,6 @@ async function autoSign(){
             console.log("Failed to sign in sehuatang!");
             axios.post(barkURL + '[Sign] Failed to sign in sehuatang!');
         } 
-        
+        await browser.close();
     }
 }
