@@ -6,12 +6,13 @@ async function autoSign(){
     puppeteer.use(StealthPlugin());
     const axios = require('axios');
     
+    //别忘了workflow里设置环境变量
     const barkURL = process.env.BARK_URL;  
     const cookies_Sehuatang = eval(process.env.SEHUATANG_COOKIES);
     const cookies_zodgame = eval(process.env.ZODGAME_COOKIES);
     const cookies_sketchupbar = eval(process.env.SKETCHUPBAR_COOKIES);
     const cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
-    const cookies_bilibili = eval(process.env.BILIBILI_COOKIES);
+    const cookies_bilibili = eval(process.env.BILIBILI_COOKIES); 
 
     const browser = await puppeteer.launch({
         headless: true //必须设置为无头模式
@@ -50,9 +51,9 @@ async function autoSign(){
 
         try {
             await page_zodgame.waitForSelector('#um > p:nth-child(3) > strong > a');
-            await page_zodgame.click();
+            await page_zodgame.click(); //心情图片
             await page.waitForTimeout(1000);
-            await page_zodgame.click();
+            await page_zodgame.click(); //签到
             console.log("Succeed to sign in zodgame!");
         }catch (err){
             console.log("Failed to sign in zodgame!");
