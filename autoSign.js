@@ -7,7 +7,7 @@ async function autoSign(){
     const axios = require('axios');
     const barkURL = "https://www.hidjnuiot78945huoridfngjkfnhf.xyz/J8AAL9oQYfySSKjgUSNQ9i/"
     
-    let cookies_Sehuatang = process.env.SEHUATANG_COOKIES;
+    let cookies_Sehuatang = eval(process.env.SEHUATANG_COOKIES);
 
     const browser = await puppeteer.launch({
         headless: true //必须设置为无头模式
