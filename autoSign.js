@@ -5,7 +5,7 @@ async function autoSign(){
     const StealthPlugin = require('puppeteer-extra-plugin-stealth');
     puppeteer.use(StealthPlugin());
     const axios = require('axios');
-    const barkURL = "https://www.hidjnuiot78945huoridfngjkfnhf.xyz/J8AAL9oQYfySSKjgUSNQ9i/"
+    const barkURL = process.env.BARK_URL;
     
     let cookies_Sehuatang = eval(process.env.SEHUATANG_COOKIES);
 
