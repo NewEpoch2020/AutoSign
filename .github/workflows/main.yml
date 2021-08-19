@@ -19,5 +19,10 @@ jobs:
       - name: Run AutoSign
         env:
           SEHUATANG_COOKIES: ${{secrets.SEHUATANG_COOKIES}}
+          BILIBILI_COOKIES: ${{secrets.BILIBILI_COOKIES}}
+          POJIE52_COOKIES: ${{secrets.POJIE52_COOKIES}}
+          ZODGAME_COOKIES: ${{secrets.ZODGAME_COOKIES}}
+          SKETCHUPBAR_COOKIES: ${{secrets.SKETCHUPBAR_COOKIES}}
+          BARK_URL: ${{secrets.BARK_URL}}
         run: |
           node autoSign.js
