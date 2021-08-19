@@ -5,7 +5,7 @@ on:
   schedule: # 触发机制为定时任务
     - cron: "30 19 * * *" # 每天03点30分自动执行（默认UTC时区）
 jobs:
-  autosend:
+  AutoSign:
     runs-on: ubuntu-latest # 运行环境为最新的Ubuntu
     steps:
       - name: Checkout
