@@ -32,6 +32,7 @@ async function autoSign(){
         try {
             await page_sehuatang.waitForSelector('#um > p:nth-child(2) > strong > a')
             console.log("Succeed to sign in sehuatang!");
+            axios.post(barkURL + '[Sign] Succeed to sign in sehuatang!');
         }catch (err){
             console.log("Failed to sign in sehuatang!");
             axios.post(barkURL + '[Sign] Failed to sign in sehuatang!');
