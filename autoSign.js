@@ -20,11 +20,11 @@ async function autoSign(){
 
     await Promise.all([ //没有顺序的概念
         sehuatang(),
-        //zodgame(),  //还没完成
-        //sketchupbar()
-        //pojie52()
-        //bilibili()
-    ])
+        zodgame(),  
+        sketchupbar(),
+        pojie52(),
+        bilibili(),
+    ]);
 
     await browser.close();
 
