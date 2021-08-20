@@ -48,12 +48,14 @@ async function autoSign(){
         const page_zodgame = await browser.newPage(); 
         await page_zodgame.setCookie(...cookies_zodgame); //可变长度参数就是一个数组
         await page_zodgame.goto('https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign');
+        await page_zodgame.waitForTimeout(5000);
 
         try {
             await page_zodgame.waitForSelector('#um > p:nth-child(3) > strong > a');
-            await page_zodgame.click('#wl > center > img'); //心情图片
-            await page.waitForTimeout(1000);
-            await page_zodgame.click('#qiandao > table > tbody > tr > td > div > a > img'); //签到
+            await page_zodgame.click('#wl > center > img');
+            await page_zodgame.waitForTimeout(500);
+            await page_zodgame.click('#qiandao > table > tbody > tr > td > div > a > img');
+            await page_zodgame.waitForTimeout(1000);
             console.log("Succeed to sign in zodgame!");
         }catch (err){
             console.log("Failed to sign in zodgame!");
@@ -86,6 +88,7 @@ async function autoSign(){
         try {
             await page_pojie52.waitForSelector('#um > p:nth-child(2) > strong > a');
             await page_pojie52.click('#um > p:nth-child(3) > a:nth-child(1) > img');
+            await page_pojie52.waitForTimeout(500);
             console.log("Succeed to sign in pojie52!");
         }catch (err){
             console.log("Failed to sign in pojie52!");
@@ -101,6 +104,7 @@ async function autoSign(){
 
         try {
             await page_bilibili.waitForSelector('#ser-ul > li.security-list.on');
+            await page_bilibili.waitForTimeout(1000);
             console.log("Succeed to sign in bilibili!");
         }catch (err){
             console.log("Failed to sign in bilibili!");
