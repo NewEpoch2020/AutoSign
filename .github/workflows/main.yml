@@ -3,7 +3,7 @@ on:
   push: # 触发机制为push操作
     branches: main
   schedule: # 触发机制为定时任务
-    - cron: "0 12 * * *" # 每天20点00分自动执行（默认UTC时区）
+    - cron: "0 4 * * *" # 每天12点00分自动执行（默认UTC时区）
 jobs:
   AutoSign:
     runs-on: ubuntu-latest # 运行环境为最新的Ubuntu
