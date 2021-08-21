@@ -53,9 +53,9 @@ async function autoSign(){
         try {
             await page_zodgame.waitForSelector('#um > p:nth-child(3) > strong > a');
             await page_zodgame.click('#wl > center > img');
-            await page_zodgame.waitForTimeout(500);
-            await page_zodgame.click('#qiandao > table > tbody > tr > td > div > a > img');
             await page_zodgame.waitForTimeout(1000);
+            await page_zodgame.click('#qiandao > table > tbody > tr > td > div > a > img');
+            await page_zodgame.waitForTimeout(5000);
             console.log("Succeed to sign in zodgame!");
         }catch (err){
             console.log("Failed to sign in zodgame!");
