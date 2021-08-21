@@ -106,6 +106,8 @@ async function autoSign(){
             await page_bilibili.waitForSelector('#ser-ul > li.security-list.on');
             await page_bilibili.waitForTimeout(1000);
             console.log("Succeed to sign in bilibili!");
+            let EXP = page.$('#app > div > div.security_content > div.security-right > div > div:nth-child(1) > div.index-info > div.home-right > div.home-top-level > span > span.home-top-level-number > i.now-num');
+            console.log("EXP = " + EXP.innertext);
         }catch (err){
             console.log("Failed to sign in bilibili!");
             axios.post(barkURL + '[Sign] Failed to sign in bilibili!');
