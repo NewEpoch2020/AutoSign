@@ -27,7 +27,6 @@ async function autoSign(){
     ]);
 
     await browser.close();
-
     async function sehuatang(){
         console.log("Start sign in sehuatang...");
         const page_sehuatang = await browser.newPage();
@@ -55,7 +54,7 @@ async function autoSign(){
             await page_zodgame.click('#wl > center > img');
             await page_zodgame.waitForTimeout(1000);
             await page_zodgame.click('#qiandao > table > tbody > tr > td > div > a > img');
-            await page_zodgame.waitForTimeout(5000);
+            await page_zodgame.waitForTimeout(3000);
             console.log("Succeed to sign in zodgame!");
         }catch (err){
             console.log("Failed to sign in zodgame!");
@@ -88,7 +87,7 @@ async function autoSign(){
         try {
             await page_pojie52.waitForSelector('#um > p:nth-child(2) > strong > a');
             await page_pojie52.click('#um > p:nth-child(3) > a:nth-child(1) > img');
-            await page_pojie52.waitForTimeout(500);
+            await page_pojie52.waitForTimeout(1000);
             console.log("Succeed to sign in pojie52!");
         }catch (err){
             console.log("Failed to sign in pojie52!");
@@ -106,8 +105,6 @@ async function autoSign(){
             await page_bilibili.waitForSelector('#ser-ul > li.security-list.on');
             await page_bilibili.waitForTimeout(1000);
             console.log("Succeed to sign in bilibili!");
-            let EXP = page.$('#app > div > div.security_content > div.security-right > div > div:nth-child(1) > div.index-info > div.home-right > div.home-top-level > span > span.home-top-level-number > i.now-num');
-            console.log("EXP = " + EXP.innertext);
         }catch (err){
             console.log("Failed to sign in bilibili!");
             axios.post(barkURL + '[Sign] Failed to sign in bilibili!');
