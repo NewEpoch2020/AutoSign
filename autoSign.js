@@ -67,7 +67,7 @@ async function autoSign(){
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
-            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
+            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!?isArchive=1`);
         }
     }
 
@@ -83,7 +83,7 @@ async function autoSign(){
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
-            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
+            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!?isArchive=1`);
         }
     }
 
@@ -101,7 +101,7 @@ async function autoSign(){
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
-            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
+            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!?isArchive=1`);
         }
     }
 
