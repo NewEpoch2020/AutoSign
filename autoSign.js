@@ -27,17 +27,19 @@ async function autoSign(){
     ]);
 
     await browser.close();
+
     async function sehuatang(){
         console.log("Start sign in sehuatang...");
         const page_sehuatang = await browser.newPage();
         await page_sehuatang.setCookie(...cookies_Sehuatang); //可变长度参数就是一个数组   
-        await page_sehuatang.goto('https://www.sehuatang.org/');
-
+        await page_sehuatang.goto('https://www.sehuatang.org/home.php?mod=spacecp&ac=credit&showcredit=1');
         try {
             await page_sehuatang.waitForSelector('#um > p:nth-child(2) > strong > a')
             console.log("Succeed to sign in sehuatang!");
+            let money = await page_sehuatang.$eval('#ct > div.mn > div > ul.creditl.mtm.bbda.cl > li.xi1.cl', text => text.innerText)
+            console.log(money);
         }catch (err){
-            console.log("Failed to sign in sehuatang!");
+            console.log("Failed to sign in sehuatang!\n" + err);
             axios.post(barkURL + '[Sign] Failed to sign in sehuatang!');
         }
     }
@@ -57,7 +59,7 @@ async function autoSign(){
             await page_zodgame.waitForTimeout(5000);
             console.log("Succeed to sign in zodgame!");
         }catch (err){
-            console.log("Failed to sign in zodgame!");
+            console.log("Failed to sign in zodgame!\n" + err);
             axios.post(barkURL + '[Sign] Failed to sign in zodgame!');
         }
     }
@@ -73,7 +75,7 @@ async function autoSign(){
             await page_sketchupbar.click('#JD_sign');
             console.log("Succeed to sign in sketchupbar!");
         }catch (err){
-            console.log("Failed to sign in sketchupbar!");
+            console.log("Failed to sign in sketchupbar!\n" + err);
             axios.post(barkURL + '[Sign] Failed to sign in sketchupbar!');
         }
     }
@@ -90,7 +92,7 @@ async function autoSign(){
             await page_pojie52.waitForTimeout(1000);
             console.log("Succeed to sign in pojie52!");
         }catch (err){
-            console.log("Failed to sign in pojie52!");
+            console.log("Failed to sign in pojie52!\n" + err);
             axios.post(barkURL + '[Sign] Failed to sign in pojie52!');
         }
     }
@@ -104,11 +106,11 @@ async function autoSign(){
         try {
             await page_bilibili.waitForSelector('#ser-ul > li.security-list.on');
             await page_bilibili.waitForTimeout(1000);
+            let EXP = await page_bilibili.$eval('#app > div > div.security_content > div.security-right > div > div:nth-child(1) > div.index-info > div.home-right > div.home-top-level > span > span.home-top-level-number > i.now-num', text => text.innerText)
             console.log("Succeed to sign in bilibili!");
-            let EXP = await page_bilibili.$eval('#app > div > div.security_content > div.security-right > div > div:nth-child(1) > div.index-info > div.home-right > div.home-top-level > span > span.home-top-level-number > i.now-num', text => text.innerText);
             console.log("EXP = " + EXP);
         }catch (err){
-            console.log("Failed to sign in bilibili!");
+            console.log("Failed to sign in bilibili!\n" + err);
             axios.post(barkURL + '[Sign] Failed to sign in bilibili!');
         }
     }
