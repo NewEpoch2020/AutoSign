@@ -1,7 +1,8 @@
 name: "AutoSign"
 on:
-  push: # 触发机制为push操作
-    branches: main
+  #push: # 触发机制为push操作
+  #  branches: main
+  workflow_dispatch: # 手动触发
   schedule: # 触发机制为定时任务
     - cron: "0 4 * * *" # 每天12点00分自动执行（默认UTC时区）
 jobs:
