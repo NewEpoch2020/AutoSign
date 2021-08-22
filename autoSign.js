@@ -38,14 +38,14 @@ async function autoSign(){
         const sitename = "sketchupbar";
         const url = "https://www.sketchupbar.com/sign.php?mod=sign";
         const selector = "#JD_sign";
-        await sign_click_1(sitename,cookies_sketchupbar,url,selector);
+        await sign_click(sitename,cookies_sketchupbar,url,selector);
     }
 
     async function pojie52(){
         const sitename = "52pojie";
         const url = "https://www.52pojie.cn/";
         const selector = "#um > p:nth-child(3) > a:nth-child(1) > img";
-        await sign_click_1(sitename,cookies_pojie52,url,selector);
+        await sign_click(sitename,cookies_pojie52,url,selector);
     }
 
     async function zodgame(){
@@ -53,7 +53,7 @@ async function autoSign(){
         const url = "https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign";
         const selector1 = '#wl > center > img';
         const selector2 = '#qiandao > table > tbody > tr > td > div > a';    
-        await sign_click_m(sitename,cookies_zodgame,url,selector1,selector2);
+        await sign_click(sitename,cookies_zodgame,url,selector1,selector2);
     }
 
     async function bisi(){
@@ -62,7 +62,7 @@ async function autoSign(){
         const selector1 = "#um > p:nth-child(2) > a:nth-child(13)";
         const selector2 = "#wl";    
         const selector3 = "#qiandao > p > button"; 
-        await sign_click_m(sitename,cookies_bisi,url,selector1,selector2,selector3);
+        await sign_click(sitename,cookies_bisi,url,selector1,selector2,selector3);
     }
     
 //------------------------------------------------------------------------------//
@@ -81,23 +81,7 @@ async function autoSign(){
         }
     }
 
-    async function sign_click(sitename,cookies,url,selector_click){
-        console.log(`Start sign in ${sitename}...`);
-        const page = await browser.newPage();
-        await page.setCookie(...cookies); //可变长度参数就是一个数组   
-        await page.goto(url);
-        try {
-            await page.waitForSelector(selector_click);
-            await page.click(selector_click);
-            await page.waitForTimeout(5000);
-            console.log(`Succeed to sign in ${sitename}!`);
-        }catch (err){
-            console.log(`Failed to sign in ${sitename}!\n` + err);
-            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
-        }
-    }
-
-    async function sign_click_m(sitename,cookies,url,...selectors){ 
+    async function sign_click(sitename,cookies,url,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
         const page = await browser.newPage();
         await page.setCookie(...cookies); //可变长度参数就是一个数组   
@@ -105,7 +89,7 @@ async function autoSign(){
         try {
             for(let i = 0;i < selectors.length;i++){
                 await page.waitForFunction('document.querySelector("' + selectors[i] + '")');
-                //console.log("i = " + i + '，Succeed to find selector: ' +  selectors[i]);
+                console.log("sitename: i = " + i + '，Succeed to find selector: ' +  selectors[i]);
                 await page.waitForTimeout(1000);
                 await page.click(selectors[i]);
                 await page.waitForTimeout(1000);
