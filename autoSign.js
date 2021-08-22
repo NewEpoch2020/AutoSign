@@ -22,7 +22,6 @@ async function autoSign(){
         zodgame(),  
         sketchupbar(),
         pojie52(),
-        bilibili(),
     ]);
     await browser.close();
     
