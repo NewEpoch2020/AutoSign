@@ -12,7 +12,6 @@ async function autoSign(){
     const cookies_zodgame = eval(process.env.ZODGAME_COOKIES);
     const cookies_sketchupbar = eval(process.env.SKETCHUPBAR_COOKIES);
     const cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
-    //const cookies_bilibili = eval(process.env.BILIBILI_COOKIES); 
     const cookies_bisi = eval(process.env.BISI_COOKIES); 
 
     const browser = await puppeteer.launch({
