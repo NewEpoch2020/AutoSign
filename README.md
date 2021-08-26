@@ -4,7 +4,5 @@
 ## sites
 
     sehuatang
-    zodgame
     bisi
     52pojie
-    sketchupbar
