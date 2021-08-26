@@ -24,7 +24,7 @@ async function autoSign(){
     await Promise.all([ //没有顺序的概念
         sehuatang(),
         //zodgame(),  
-        sketchupbar(),
+        //sketchupbar(),
         pojie52(),
         bisi(),
     ]);
