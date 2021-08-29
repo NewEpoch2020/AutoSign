@@ -3,6 +3,8 @@
 
 ## sites
 
+    52pojie
+    sketchupbar
     sehuatang
     bisi
-    52pojie
+    zodgame
