@@ -22,10 +22,11 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        sehuatang(),
-        //zodgame(),  
-        //sketchupbar(),
+        sketchupbar(),
         pojie52(),
+        sehuatang(),
+        zodgame(), 
+        zodgame_BUX()
         bisi(),
     ]);
     await browser.close();
@@ -40,8 +41,9 @@ async function autoSign(){
     async function sketchupbar(){
         const sitename = "sketchupbar";
         const url = "https://www.sketchupbar.com/sign.php?mod=sign";
-        const selector = "#JD_sign";
-        await sign_click(sitename,cookies_sketchupbar,url,500,selector);
+        const selector1 = "#JD_sign";
+        const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
+        await sign_click(sitename,cookies_sketchupbar,url,3000,selector1,selector2);
     }
 
     async function pojie52(){
@@ -52,13 +54,20 @@ async function autoSign(){
     }
 
     async function zodgame(){
-        const sitename = "zodgame";
+        const sitename = "zodgame签到";
         const url = "https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign";
         const selector1 = '#wl > center > img';
         const selector2 = '#qiandao > table > tbody > tr > td > div > a';    
         await sign_click(sitename,cookies_zodgame,url,10000,selector1,selector2);
     }
 
+    async function zodgame_BUX(){
+        const sitename = "zodgame点击赚分";
+        const url = "https://zodgame.xyz/plugin.php?id=jnbux";
+        const selector = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
+        await sign_wait(sitename,cookies_zodgame,url,10000,selector);
+    } 
+    
     async function bisi(){
         const sitename = "bisi";
         const url = "http://bisi777.xyz/forum.php?gid=1";
@@ -68,7 +77,7 @@ async function autoSign(){
         await sign_click(sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
     }
 
-//----------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------//
 
     async function sign_justlogin(sitename,cookies,url,selector_flag){
         console.log(`Start sign in ${sitename}...`);
@@ -104,6 +113,28 @@ async function autoSign(){
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
+        }
+    }
+
+    async function sign_wait(sitename,cookies,url,timeout,...selectors){ 
+        console.log(`Start sign in ${sitename}...`);
+        const page = await browser.newPage();
+        await page.setCookie(...cookies); //可变长度参数就是一个数组   
+        await page.goto(url);
+        await page.waitForTimeout(timeout);
+        for(let i = 1; i <= 3; i++){
+            try {
+                await page.waitForSelector(selectors[0]);
+                console.log(sitename +  ": i = 0，Succeed to find selector: " +  selectors[0]);
+                await page.waitForTimeout(1000);
+                await page.click(selectors[0]);
+                await page.waitForTimeout(20000);
+                await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+
+            }catch (err){
+                console.log(`Failed to sign in ${sitename}!\n` + err);
+                axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
+            }
         }
     }
 }
