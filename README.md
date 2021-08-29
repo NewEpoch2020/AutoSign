@@ -1,5 +1,5 @@
 # AutoSign
-利用 `secrets.xxx_COOKIES` 作为环境变量自动签到,如果 cookie 失效登录失败，发送 bark 通知。
+Use `secrets.xxx_COOKIES` as an environment variable to automatically sign in. If the cookie fails to log in, a bark notification will be sent.
 
 ## sites
 
