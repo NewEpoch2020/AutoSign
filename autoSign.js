@@ -22,12 +22,12 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        sketchupbar(),
+        //sketchupbar(),
         pojie52(),
-        sehuatang(),
-        zodgame(), 
-        zodgame_BUX(),
-        bisi(),
+        //sehuatang(),
+        //zodgame(), 
+        //zodgame_BUX(),
+        //bisi(),
     ]);
     await browser.close();
     
@@ -50,7 +50,7 @@ async function autoSign(){
         const sitename = "52pojie";
         const url = "https://www.52pojie.cn/";
         const selector = "#um > p:nth-child(3) > a:nth-child(1)";
-        await sign_click(sitename,cookies_pojie52,url,5000,selector);
+        await sign_click(sitename,cookies_pojie52,url,10000,selector);
     }
 
     async function zodgame(){
