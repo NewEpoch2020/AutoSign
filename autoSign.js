@@ -41,9 +41,9 @@ async function autoSign(){
     async function sketchupbar(){
         const sitename = "sketchupbar";
         const url = "https://www.sketchupbar.com/sign.php?mod=sign";
-        const selector1 = "#JD_sign";
-        const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
-        await sign_click(sitename,cookies_sketchupbar,url,3000,selector1,selector2);
+        const selector = "#JD_sign";
+        //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
+        await sign_click(sitename,cookies_sketchupbar,url,5000,selector);
     }
 
     async function pojie52(){
