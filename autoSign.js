@@ -46,10 +46,13 @@ async function autoSign(){
     
     async function sketchupbar(){
         const sitename = "sketchupbar";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.sketchupbar.com/sign.php?mod=sign";
         const selector = "#JD_sign";
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
-        await sign_click(sitename,cookies_sketchupbar,url,5000,selector);
+        const page = await browser.newPage();
+        await logAndGetCookies(page,url,sitename,name_md5);
+        await sign_click(page,sitename,cookies_sketchupbar,url,5000,selector);
     }
 
     async function pojie52(){
@@ -63,42 +66,50 @@ async function autoSign(){
     }
 
     async function zodgame(){
-        const sitename = "zodgame签到";
+        const sitename = "zodgame";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign";
         const selector1 = '#wl > center > img';
         const selector2 = '#qiandao > table > tbody > tr > td > div > a';    
-        await sign_click(sitename,cookies_zodgame,url,10000,selector1,selector2);
+        const page = await browser.newPage();
+        await logAndGetCookies(page,url,sitename,name_md5);
+        await sign_click(page,sitename,cookies_zodgame,url,10000,selector1,selector2);
     }
 
     async function zodgame_BUX(){
-        const sitename = "zodgame点击赚分";
+        const sitename = "zodgame";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://zodgame.xyz/plugin.php?id=jnbux";
         const selector = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
-        await sign_wait(sitename,cookies_zodgame,url,10000,selector);
+        const page = await browser.newPage();
+        await logAndGetCookies(page,url,sitename,name_md5);       
+        await sign_wait(page,sitename,cookies_zodgame,url,10000,selector);
     } 
     
     async function bisi(){
         const sitename = "bisi";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "http://bisi777.xyz/forum.php?gid=1";
         const selector1 = "#um > p:nth-child(2) > a:nth-child(13)";
         const selector2 = "#wl";    
         const selector3 = "#qiandao > p > button"; 
-        await sign_click(sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
+        const page = await browser.newPage();
+        await logAndGetCookies(page,url,sitename,name_md5);       
+        await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
     }
 
 //--------------------------------------------------------------------------------------------------//
-    async function logAndGetCookies(page,url,sitename,name_md5){
+    async function logAndGetCookies(page,url,cookies,sitename,name_md5){
         try{         
-            cookies_Sehuatang = await JSON.parse(fs.readFileSync(
+            cookies = await JSON.parse(fs.readFileSync(
                 path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json")
             ));
             console.log(`Succeed to load ${sitename} cookies.`); 
         }catch (err){
             console.log(`Failed to load ${sitename} cookies.` + err); 
         }    
-        await page.setCookie(...cookies_Sehuatang); 
+        await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
-        //await page.waitForTimeout(2000);
         try{         
             fs.writeFileSync(
                 path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json"),
@@ -109,25 +120,25 @@ async function autoSign(){
             console.log(`Failed to save ${sitename} cookies.` + err); 
         }
     }
-    
-    async function sign_justlogin(page,sitename,cookies,url,selector_flag){
+
+    async function sign_justlogin(page,sitename,cookies,url,selector){
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
-        await page.goto(url);
+        await page.goto(url,{waitUntil: "networkidle0"});
         try {
-            await page.waitForSelector(selector_flag);
+            await page.waitForSelector(selector);
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!?isArchive=1`);
         }
-    }
+    } 
 
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
-        await page.goto(url);
-        await page.waitForTimeout(timeout);
+        await page.goto(url,{waitUntil: "networkidle0"});
+        //await page.waitForTimeout(timeout);
         try {
             for(let i = 0;i < selectors.length;i++){
                 //await page.waitForFunction(`document.querySelector("${selectors[i]}")`);
@@ -145,12 +156,11 @@ async function autoSign(){
         }
     }
 
-    async function sign_wait(sitename,cookies,url,timeout,...selectors){ 
+    async function sign_wait(page,sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
-        const page = await browser.newPage();
         await page.setCookie(...cookies);
-        await page.goto(url);
-        await page.waitForTimeout(timeout);
+        await page.goto(url,{waitUntil: "networkidle0"});
+        //await page.waitForTimeout(timeout);
         for(let i = 1; i <= 3; i++){
             try {
                 await page.waitForSelector(selectors[0]);
