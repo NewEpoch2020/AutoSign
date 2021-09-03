@@ -89,7 +89,7 @@ async function autoSign(){
 //--------------------------------------------------------------------------------------------------//
     async function logAndGetCookies(page,url,sitename,name_md5){
         try{         
-            cookies_Sehuatang = JSON.parse(fs.readFileSync(
+            cookies_Sehuatang = await JSON.parse(fs.readFileSync(
                 path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json")
             ));
             console.log(`Succeed to load ${sitename} cookies.`); 
