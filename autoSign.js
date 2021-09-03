@@ -4,15 +4,18 @@ async function autoSign(){
     const puppeteer = require('puppeteer-extra');
     const StealthPlugin = require('puppeteer-extra-plugin-stealth');
     puppeteer.use(StealthPlugin());
+    const path = require("path");
+    const fs = require("fs");
+    const crypto = require('crypto');
     const axios = require('axios');
     
     //别忘了workflow里设置环境变量
     const barkURL = process.env.BARK_URL;  
-    const cookies_Sehuatang = eval(process.env.SEHUATANG_COOKIES);
-    const cookies_zodgame = eval(process.env.ZODGAME_COOKIES);
-    const cookies_sketchupbar = eval(process.env.SKETCHUPBAR_COOKIES);
-    const cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
-    const cookies_bisi = eval(process.env.BISI_COOKIES); 
+    var cookies_Sehuatang = eval(process.env.SEHUATANG_COOKIES);
+    var cookies_zodgame = eval(process.env.ZODGAME_COOKIES);
+    var cookies_sketchupbar = eval(process.env.SKETCHUPBAR_COOKIES);
+    var cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
+    var cookies_bisi = eval(process.env.BISI_COOKIES); 
 
     const browser = await puppeteer.launch({
         headless: true,
@@ -22,19 +25,22 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        sketchupbar(),
-        pojie52(),
+        //sketchupbar(),
+        //pojie52(),
         sehuatang(),
-        zodgame(), 
-        zodgame_BUX(),
-        bisi(),
+        //zodgame(), 
+        //zodgame_BUX(),
+        //bisi(),
     ]);
     await browser.close();
     
     async function sehuatang(){
         const sitename = "sehuatang";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.sehuatang.org/home.php?mod=spacecp&ac=credit&showcredit=1";
         const selector = "#um > p:nth-child(2) > strong > a";
+        const page = await browser.newPage();
+        await logAndGetCookies(page,url,sitename,name_md5);
         await sign_justlogin(sitename,cookies_Sehuatang,url,selector);
     }
     
@@ -48,9 +54,12 @@ async function autoSign(){
 
     async function pojie52(){
         const sitename = "52pojie";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.52pojie.cn/";
         const selector = "#um > p:nth-child(3) > a:nth-child(1) > img";
-        await sign_click(sitename,cookies_pojie52,url,5000,selector);
+        const page = await browser.newPage();
+        await logAndGetCookies(page,url,sitename,name_md5);
+        await sign_click(page,sitename,cookies_pojie52,url,5000,selector);
     }
 
     async function zodgame(){
@@ -78,11 +87,32 @@ async function autoSign(){
     }
 
 //--------------------------------------------------------------------------------------------------//
-
-    async function sign_justlogin(sitename,cookies,url,selector_flag){
+    async function logAndGetCookies(page,url,sitename,name_md5){
+        try{         
+            cookies_Sehuatang = JSON.parse(fs.readFileSync(
+                path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json")
+            ));
+            console.log(`Succeed to load ${sitename} cookies.`); 
+        }catch (err){
+            console.log(`Failed to load ${sitename} cookies.` + err); 
+        }    
+        await page.setCookie(...cookies_Sehuatang); 
+        await page.goto(url,{waitUntil: "networkidle0"});
+        //await page.waitForTimeout(2000);
+        try{         
+            fs.writeFileSync(
+                path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json"),
+                JSON.stringify(await page.cookies())
+            ); 
+            console.log(`Succeed to save ${sitename} cookies.`);
+        }catch (err){
+            console.log(`Failed to save ${sitename} cookies.` + err); 
+        }
+    }
+    
+    async function sign_justlogin(page,sitename,cookies,url,selector_flag){
         console.log(`Start sign in ${sitename}...`);
-        const page = await browser.newPage();
-        await page.setCookie(...cookies); //可变长度参数就是一个数组   
+        await page.setCookie(...cookies); 
         await page.goto(url);
         try {
             await page.waitForSelector(selector_flag);
@@ -93,10 +123,9 @@ async function autoSign(){
         }
     }
 
-    async function sign_click(sitename,cookies,url,timeout,...selectors){ 
+    async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
-        const page = await browser.newPage();
-        await page.setCookie(...cookies); //可变长度参数就是一个数组   
+        await page.setCookie(...cookies); 
         await page.goto(url);
         await page.waitForTimeout(timeout);
         try {
@@ -119,7 +148,7 @@ async function autoSign(){
     async function sign_wait(sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
         const page = await browser.newPage();
-        await page.setCookie(...cookies); //可变长度参数就是一个数组   
+        await page.setCookie(...cookies);
         await page.goto(url);
         await page.waitForTimeout(timeout);
         for(let i = 1; i <= 3; i++){
