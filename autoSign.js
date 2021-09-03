@@ -41,7 +41,7 @@ async function autoSign(){
         const selector = "#um > p:nth-child(2) > strong > a";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,sitename,name_md5);
-        await sign_justlogin(sitename,cookies_Sehuatang,url,selector);
+        await sign_justlogin(page,sitename,cookies_Sehuatang,url,selector);
     }
     
     async function sketchupbar(){
