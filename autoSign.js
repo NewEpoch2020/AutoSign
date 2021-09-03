@@ -22,12 +22,12 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        //sketchupbar(),
+        sketchupbar(),
         pojie52(),
-        //sehuatang(),
-        //zodgame(), 
-        //zodgame_BUX(),
-        //bisi(),
+        sehuatang(),
+        zodgame(), 
+        zodgame_BUX(),
+        bisi(),
     ]);
     await browser.close();
     
