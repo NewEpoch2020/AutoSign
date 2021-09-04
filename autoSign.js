@@ -40,7 +40,7 @@ async function autoSign(){
         const url = "https://www.sehuatang.org/home.php?mod=spacecp&ac=credit&showcredit=1";
         const selector = "#um > p:nth-child(2) > strong > a";
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,sitename,name_md5);
+        await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
         await sign_justlogin(page,sitename,cookies_Sehuatang,url,selector);
     }
     
@@ -51,7 +51,7 @@ async function autoSign(){
         const selector = "#JD_sign";
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,sitename,name_md5);
+        await logAndGetCookies(page,url,cookies_sketchupbar,sitename,name_md5);
         await sign_click(page,sitename,cookies_sketchupbar,url,5000,selector);
     }
 
@@ -61,7 +61,7 @@ async function autoSign(){
         const url = "https://www.52pojie.cn/";
         const selector = "#um > p:nth-child(3) > a:nth-child(1) > img";
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,sitename,name_md5);
+        await logAndGetCookies(page,url,cookies_pojie52,sitename,name_md5);
         await sign_click(page,sitename,cookies_pojie52,url,5000,selector);
     }
 
@@ -72,7 +72,7 @@ async function autoSign(){
         const selector1 = '#wl > center > img';
         const selector2 = '#qiandao > table > tbody > tr > td > div > a';    
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,sitename,name_md5);
+        await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
         await sign_click(page,sitename,cookies_zodgame,url,10000,selector1,selector2);
     }
 
@@ -82,7 +82,7 @@ async function autoSign(){
         const url = "https://zodgame.xyz/plugin.php?id=jnbux";
         const selector = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,sitename,name_md5);       
+        await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
         await sign_wait(page,sitename,cookies_zodgame,url,10000,selector);
     } 
     
@@ -94,23 +94,23 @@ async function autoSign(){
         const selector2 = "#wl";    
         const selector3 = "#qiandao > p > button"; 
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,sitename,name_md5);       
+        await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
         await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
     }
 
 //--------------------------------------------------------------------------------------------------//
     async function logAndGetCookies(page,url,cookies,sitename,name_md5){
         try{    
-            console.log("1");
+            //console.log("1");
             cookies = await JSON.parse(fs.readFileSync(
                 path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json")
             ));
             console.log(`Succeed to load ${sitename} cookies.`); 
         }catch (err){
-            console.log("2");
+            //console.log("2");
             console.log(`Failed to load ${sitename} cookies.` + err); 
         }    
-        console.log("3");
+        //console.log("3");
         await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
         try{         
