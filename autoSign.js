@@ -109,6 +109,7 @@ async function autoSign(){
         }catch (err){
             //console.log("2");
             console.log(`Failed to load ${sitename} cookies.` + err); 
+            process.exit(1);
         }    
         //console.log("3");
         await page.setCookie(...cookies); 
@@ -121,6 +122,7 @@ async function autoSign(){
             console.log(`Succeed to save ${sitename} cookies.`);
         }catch (err){
             console.log(`Failed to save ${sitename} cookies.` + err); 
+            process.exit(1);
         }
     }
 
@@ -134,6 +136,7 @@ async function autoSign(){
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!?isArchive=1`);
+            process.exit(1);
         }
     } 
 
@@ -156,6 +159,7 @@ async function autoSign(){
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
+            process.exit(1);
         }
     }
 
@@ -176,6 +180,7 @@ async function autoSign(){
             }catch (err){
                 console.log(`Failed to sign in ${sitename}!\n` + err);
                 axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
+                process.exit(1);
             }
         }
     }
