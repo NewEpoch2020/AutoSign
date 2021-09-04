@@ -109,7 +109,6 @@ async function autoSign(){
         }catch (err){
             //console.log("2");
             console.log(`Failed to load ${sitename} cookies.` + err); 
-            process.exit(1);
         }    
         //console.log("3");
         await page.setCookie(...cookies); 
