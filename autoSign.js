@@ -62,7 +62,7 @@ async function autoSign(){
         const selector = "#um > p:nth-child(3) > a:nth-child(1) > img";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_pojie52,sitename,name_md5);
-        await sign_click(page,sitename,cookies_pojie52,url,10000,selector);
+        await sign_click(page,sitename,cookies_pojie52,url,5000,selector);
     }
 
     async function zodgame(){
