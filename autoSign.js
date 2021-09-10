@@ -41,7 +41,7 @@ async function autoSign(){
         const selector = "#um > p:nth-child(2) > strong > a";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
-        await sign_justlogin(page,sitename,cookies_Sehuatang,url,selector);
+        await sign_justlogin(page,sitename,cookies_Sehuatang,url);
     }
     
     async function sketchupbar(){
@@ -125,7 +125,7 @@ async function autoSign(){
         }
     }
 
-    async function sign_justlogin(page,sitename,cookies,url,selector){
+    async function sign_justlogin(page,sitename,cookies,url){
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
