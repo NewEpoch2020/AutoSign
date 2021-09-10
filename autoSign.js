@@ -59,7 +59,7 @@ async function autoSign(){
         const sitename = "52pojie";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.52pojie.cn/";
-        const selector = "#um > p:nth-child(3) > a:nth-child(1) > img";
+        const selector = "#um > p:nth-child(3) > a:nth-child(1)";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_pojie52,sitename,name_md5);
         await sign_click(page,sitename,cookies_pojie52,url,5000,selector);
