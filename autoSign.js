@@ -129,7 +129,8 @@ async function autoSign(){
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
-        try {
+        await page.waitForTimeout(3000);
+/*      try {
             await page.waitForSelector(selector);
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
@@ -137,6 +138,7 @@ async function autoSign(){
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!?isArchive=1`);
             process.exit(1);
         }
+*/
     } 
 
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
