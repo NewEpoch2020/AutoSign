@@ -19,18 +19,18 @@ async function autoSign(){
 
     const browser = await puppeteer.launch({
         headless: true,
-        args: [
+ /*       args: [
             `--window-size=1920,1080`,  
-        ]
+        ]*/
     });
 
     await Promise.all([ //没有顺序的概念
         //sketchupbar(),
         //pojie52(),
         sehuatang(),
-        //zodgame(), 
-        //zodgame_BUX(),
-        //bisi(),
+        zodgame(), 
+        zodgame_BUX(),
+        bisi(),
     ]);
     await browser.close();
     
@@ -129,16 +129,16 @@ async function autoSign(){
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
-        await page.waitForTimeout(3000);
-/*      try {
-            await page.waitForSelector(selector);
+      try {
+            //await page.waitForSelector(selector);
+            await page.waitForTimeout(3000);
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!?isArchive=1`);
             process.exit(1);
         }
-*/
+
     } 
 
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
