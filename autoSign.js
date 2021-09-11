@@ -131,7 +131,7 @@ async function autoSign(){
         await page.goto(url,{waitUntil: "networkidle0"});
       try {
             //await page.waitForSelector(selector);
-            await page.waitForTimeout(3000);
+            await page.waitForTimeout(5000);
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
