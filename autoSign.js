@@ -37,7 +37,7 @@ async function autoSign(){
     async function sehuatang(){
         const sitename = "sehuatang";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
-        const url = "https://www.sehuatang.org/home.php?mod=spacecp&ac=credit&showcredit=1";
+        const url = "https://www.sehuatang.org/";
         const selector = "#um > p:nth-child(2) > strong > a";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
