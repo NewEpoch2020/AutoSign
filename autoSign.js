@@ -38,7 +38,7 @@ async function autoSign(){
         const sitename = "sehuatang";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.sehuatang.org/";
-        const selector = "#um > p:nth-child(2) > strong > a";
+        //const selector = "#um > p:nth-child(2) > strong > a";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
         await sign_justlogin(page,sitename,cookies_Sehuatang,url);
