@@ -142,8 +142,10 @@ async function autoSign(){
     async function sign_justlogin(page,sitename,cookies,url){
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
-        await page.goto(url,{waitUntil: "networkidle0"});
-      try {
+        await page.goto(url,{waitUntil: "networkidle2"});
+        await page.waitForTimeout(3000);
+        console.log(`Succeed to sign in ${sitename}!`);
+/*      try {
             //await page.waitForSelector(selector);
             await page.waitForTimeout(5000);
             console.log(`Succeed to sign in ${sitename}!`);
@@ -152,7 +154,7 @@ async function autoSign(){
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!?isArchive=1`);
             process.exit(1);
         }
-
+*/
     } 
 
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
