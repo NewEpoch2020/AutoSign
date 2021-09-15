@@ -82,7 +82,8 @@ async function autoSign(){
         const url = "https://zodgame.xyz/plugin.php?id=jnbux";
         const selector = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
+        await getCookies(cookies_zodgame,sitename,name_md5)
+        //await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
         await sign_wait(page,sitename,cookies_zodgame,url,10000,selector);
     } 
     
@@ -125,6 +126,19 @@ async function autoSign(){
         }
     }
 
+    async function getCookies(cookies,sitename,name_md5){
+        try{    
+            //console.log("1");
+            cookies = await JSON.parse(fs.readFileSync(
+                path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json")
+            ));
+            console.log(`Succeed to load ${sitename} cookies.`); 
+        }catch (err){
+            //console.log("2");
+            console.log(`Failed to load ${sitename} cookies.` + err); 
+        }    
+    }
+    
     async function sign_justlogin(page,sitename,cookies,url){
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
