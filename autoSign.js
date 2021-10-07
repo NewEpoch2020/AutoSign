@@ -29,7 +29,7 @@ async function autoSign(){
         //pojie52(),
         //sehuatang(),
         zodgame(), 
-        zodgame_BUX(),
+        //zodgame_BUX(),
         bisi(),
     ]);
     await browser.close();
