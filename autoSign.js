@@ -54,7 +54,7 @@ async function autoSign(){
         const selector2 = "#wl";    
         const selector3 = "#qiandao > p > button"; 
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
+        await logAndGetCookies(page,url,cookies_bisi,sitename,name_md5);       
         await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
     }    
     
