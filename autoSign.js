@@ -69,16 +69,15 @@ async function autoSign(){
         await sign_click(page,sitename,cookies_zodgame,url,30000,selector1,selector2); 
     }
 
-    async function zodgame_BUX(){
+    async function zodgame_BUX() {
         const sitename = "zodgame";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://zodgame.xyz/plugin.php?id=jnbux";
-        const selector = 'body > div:nth-child(6) > div:nth-child(3) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(6) > a:nth-child(1)';
+        const selector = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
-        await getCookies(cookies_zodgame,sitename,name_md5)
-        //await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
-        await sign_wait(page,sitename,cookies_zodgame,url,30000,selector);
-    } 
+        await getCookies(cookies_zodgame, sitename, name_md5)
+        await sign_wait(page, sitename, cookies_zodgame, url, 60000, selector);
+    }
     
     async function sketchupbar(){
         const sitename = "sketchupbar";
@@ -182,21 +181,21 @@ async function autoSign(){
         }
     }
 
-    async function sign_wait(page,sitename,cookies,url,timeout,...selectors){ 
-        console.log(`Start sign in ${sitename}...`);
+    async function sign_wait(page, sitename, cookies, url, timeout, selector) {
         await page.setCookie(...cookies);
-        await page.goto(url,{waitUntil: "networkidle0"});
+        await page.goto(url, { waitUntil: "networkidle0" });
         await page.waitForTimeout(timeout);
-        for(let i = 1; i <= 3; i++){
+        for (let i = 1; i <= 3; i++) {
             try {
-                await page.waitForSelector(selectors[0]);
-                console.log(sitename +  ": i = 0，Succeed to find selector: " +  selectors[0]);
-                await page.waitForTimeout(1000);
-                await page.click(selectors[0]);
+                await page.waitForSelector(selector);
+                console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
+                await page.waitForTimeout(3000);
+                await page.click(selector);
                 await page.waitForTimeout(20000);
                 await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+                await page.waitForTimeout(5000);
 
-            }catch (err){
+            } catch (err) {
                 console.log(`Failed to sign in ${sitename}!\n` + err);
                 axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
                 process.exit(1);
