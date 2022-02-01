@@ -46,6 +46,18 @@ async function autoSign(){
         await sign_SeHua(page, sitename, cookies_Sehuatang, url, selector1, selector2, selector3);
     }
     
+    async function bisi(){
+        const sitename = "bisi";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
+        const url = "http://bisi888.cc/forum.php?gid=1";
+        const selector1 = "#um > p:nth-child(2) > a:nth-child(14)";
+        const selector2 = "#wl";    
+        const selector3 = "#qiandao > p > button"; 
+        const page = await browser.newPage();
+        await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
+        await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
+    }    
+    
     async function sketchupbar(){
         const sitename = "sketchupbar";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
@@ -89,17 +101,6 @@ async function autoSign(){
         await sign_wait(page,sitename,cookies_zodgame,url,10000,selector);
     } 
     
-    async function bisi(){
-        const sitename = "bisi";
-        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
-        const url = "http://bisi777.xyz/forum.php?gid=1";
-        const selector1 = "#um > p:nth-child(2) > a:nth-child(13)";
-        const selector2 = "#wl";    
-        const selector3 = "#qiandao > p > button"; 
-        const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
-    }
 
 //--------------------------------------------------------------------------------------------------//
     async function logAndGetCookies(page,url,cookies,sitename,name_md5){
