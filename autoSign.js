@@ -27,9 +27,9 @@ async function autoSign(){
     await Promise.all([ //没有顺序的概念
         bisi(),
         sehuatang(),
+        zodgame(), 
         //sketchupbar(),
         //pojie52(),
-        //zodgame(), 
         //zodgame_BUX(),
     ]);
     await browser.close();
@@ -84,7 +84,7 @@ async function autoSign(){
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign";
         const selector1 = '#wl > center > img';
-        const selector2 = '#qiandao > table > tbody > tr > td > div > a';    
+        const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
         await sign_click(page,sitename,cookies_zodgame,url,10000,selector1,selector2); 
