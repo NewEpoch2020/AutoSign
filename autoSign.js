@@ -28,8 +28,8 @@ async function autoSign(){
         //bisi(),
         //sehuatang(),
         //zodgame(), 
-        zodgame_BUX(),
-        //sketchupbar(),
+        //zodgame_BUX(),
+        sketchupbar(),
         //pojie52(),      
     ]);
     await browser.close();
@@ -83,11 +83,11 @@ async function autoSign(){
         const sitename = "sketchupbar";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.sketchupbar.com/sign.php?mod=sign";
-        const selector = "#JD_sign";
+        const selector = "#JD_sign > img";
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_sketchupbar,sitename,name_md5);
-        await sign_click(page,sitename,cookies_sketchupbar,url,5000,selector);
+        await sign_click(page,sitename,cookies_sketchupbar,url,20000,selector);
     }
 
     async function pojie52(){
