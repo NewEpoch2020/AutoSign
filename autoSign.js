@@ -43,7 +43,7 @@ async function autoSign(){
         const selector3 = "button[name='signsubmit']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
-        await sign_SeHua(page, sitename, cookies_Sehuatang, url,10000, selector1, selector2, selector3);
+        await sign_SeHua(page, sitename, cookies_Sehuatang, url,15000, selector1, selector2, selector3);
     }
     
     async function bisi(){
@@ -55,7 +55,7 @@ async function autoSign(){
         const selector3 = "#qiandao > p > button"; 
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_bisi,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
+        await sign_click(page,sitename,cookies_bisi,url,15000,selector1,selector2,selector3);
     }    
     
     async function zodgame(){
@@ -87,17 +87,17 @@ async function autoSign(){
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_sketchupbar,sitename,name_md5);
-        await sign_click(page,sitename,cookies_sketchupbar,url,20000,selector);
+        await sign_click(page,sitename,cookies_sketchupbar,url,30000,selector);
     }
 
     async function pojie52(){
         const sitename = "52pojie";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.52pojie.cn/";
-        const selector = "#um > p:nth-child(3) > a:nth-child(1)";
+        const selector = ".qq_bind[src='https://static.52pojie.cn/static/image/common/qds.png']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_pojie52,sitename,name_md5);
-        await sign_click(page,sitename,cookies_pojie52,url,5000,selector);
+        await sign_click(page,sitename,cookies_pojie52,url,30000,selector);
     }
     
 //--------------------------------------------------------------------------------------------------//
