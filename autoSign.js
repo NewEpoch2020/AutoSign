@@ -43,7 +43,7 @@ async function autoSign(){
         const selector3 = "button[name='signsubmit']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
-        await sign_SeHua(page, sitename, cookies_Sehuatang, url, selector1, selector2, selector3);
+        await sign_SeHua(page, sitename, cookies_Sehuatang, url,10000, selector1, selector2, selector3);
     }
     
     async function bisi(){
@@ -87,7 +87,7 @@ async function autoSign(){
         const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
-        await sign_click(page,sitename,cookies_zodgame,url,20000,selector1,selector2); 
+        await sign_click(page,sitename,cookies_zodgame,url,30000,selector1,selector2); 
     }
 
     async function zodgame_BUX(){
@@ -164,7 +164,7 @@ async function autoSign(){
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
-        //await page.waitForTimeout(timeout);
+        await page.waitForTimeout(timeout);
         try {
             for(let i = 0;i < selectors.length;i++){
                 //await page.waitForFunction(`document.querySelector("${selectors[i]}")`);
