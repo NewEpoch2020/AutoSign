@@ -73,7 +73,7 @@ async function autoSign(){
         const sitename = "zodgame";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://zodgame.xyz/plugin.php?id=jnbux";
-        const selector = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
+        const selector = 'body > div:nth-child(6) > div:nth-child(3) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(6) > a:nth-child(1)';
         const page = await browser.newPage();
         await getCookies(cookies_zodgame,sitename,name_md5)
         //await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);       
@@ -186,7 +186,7 @@ async function autoSign(){
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies);
         await page.goto(url,{waitUntil: "networkidle0"});
-        //await page.waitForTimeout(timeout);
+        await page.waitForTimeout(timeout);
         for(let i = 1; i <= 3; i++){
             try {
                 await page.waitForSelector(selectors[0]);
