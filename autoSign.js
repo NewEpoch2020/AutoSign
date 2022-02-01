@@ -27,7 +27,7 @@ async function autoSign(){
     await Promise.all([ //没有顺序的概念
         //sketchupbar(),
         //pojie52(),
-        //sehuatang(),
+        sehuatang(),
         //zodgame(), 
         //zodgame_BUX(),
         bisi(),
@@ -38,10 +38,12 @@ async function autoSign(){
         const sitename = "sehuatang";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.sehuatang.org/plugin.php?id=dd_sign:index";
-        const selector = "#wp > div.wp.dd_sign > div.dd_sign_right > div.ddpc_sign_btna";
+        const selector1 = "#wp > div.wp.dd_sign > div.dd_sign_right > div.ddpc_sign_btna > a";
+        const selector2 = "#fctrl_pc_click_ddsign";
+        const selector3 = "button[name='signsubmit']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
-        await sign_click(page,sitename,cookies_Sehuatang,url,5000,selector);
+        await sign_SeHua(page, sitename, cookies_Sehuatang, url, selector1, selector2, selector3);
     }
     
     async function sketchupbar(){
@@ -199,6 +201,39 @@ async function autoSign(){
                 axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
                 process.exit(1);
             }
+        }
+    }
+    
+    async function sign_SeHua(page, sitename, cookies, url, ...selectors) {
+        console.log(`Start sign in ${sitename}...`);
+        await page.setCookie(...cookies);
+        await page.goto(url, { waitUntil: "networkidle0" });
+        try {
+
+            await page.waitForSelector(selectors[0]);
+            console.log(sitename + ": i = " + 0 + '，Succeed to find selector: ' + selectors[0]);
+            await page.waitForTimeout(1000);
+            const signBtnText = await page.$eval(`${selectors[0]}`, el => el.innerText);
+            if (signBtnText == "今日已签到") {
+                process.exit(1);
+            }
+            await page.click(selectors[0]);
+            await page.waitForTimeout(5000);
+            await page.waitForSelector(selectors[1]);
+            console.log(sitename + ": i = " + 1 + '，Succeed to find selector: ' + selectors[1]);
+            const verifiText = await page.$eval(`${selectors[1]} + form > span > div > table > tbody > tr > td`, el => el.innerText.match(/\d+ - \d+/));
+            const verifyResult = await page.evaluate(`${verifiText[0]}`);
+            await page.$eval(`${selectors[1]} + form > span > div > table > tbody > tr > td > input`, (el, re) => {
+                return el.value = re;
+            }, verifyResult);
+            await page.waitForTimeout(5000);
+            await page.click(selectors[2]);
+            await page.waitForTimeout(5000);
+            console.log(`Succeed to sign in $ { sitename }!`);
+        } catch (err) {
+            console.log(`Failed to sign in $ { sitename }!\n ` + err);
+            axios.post(barkURL + ` [Sign] Failed to sign in $ { sitename }!`);
+            process.exit(1);
         }
     }
 }
