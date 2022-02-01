@@ -29,8 +29,8 @@ async function autoSign(){
         //sehuatang(),
         //zodgame(), 
         //zodgame_BUX(),
-        sketchupbar(),
-        //pojie52(),      
+        //sketchupbar(),
+        pojie52(),      
     ]);
     await browser.close();
     
