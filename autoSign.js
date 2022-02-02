@@ -25,12 +25,12 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        //bisi(),  //上次失败因为页面元素选择器变化
-        //sehuatang(), //上次失败因为增加了新验证
+        bisi(),  //上次失败因为页面元素选择器变化
+        sehuatang(), //上次失败因为增加了新验证
         zodgame(),  //上次失败因为页面重定向timeout设置太小
         zodgame_BUX(), //同上
-        //sketchupbar(), //疑似同上
-        //pojie52(),  
+        sketchupbar(), //疑似同上
+        pojie52(),  
     ]);
     await browser.close();
     
