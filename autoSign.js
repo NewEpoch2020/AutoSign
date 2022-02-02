@@ -229,10 +229,10 @@ async function autoSign(){
             await page.waitForTimeout(5000);
             await page.click(selectors[2]);
             await page.waitForTimeout(5000);
-            console.log(`Succeed to sign in $ { sitename }!`);
+            console.log(`Succeed to sign in ${sitename}!`);
         } catch (err) {
-            console.log(`Failed to sign in $ { sitename }!\n ` + err);
-            axios.post(barkURL + ` [Sign] Failed to sign in $ { sitename }!`);
+            console.log(`Failed to sign in ${sitename}!\n ` + err);
+            axios.post(barkURL + ` [Sign] Failed to sign in ${sitename}!`);
             process.exit(1);
         }
     }
