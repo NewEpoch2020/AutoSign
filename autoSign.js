@@ -25,11 +25,11 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        bisi(),  //上次失败因为页面元素选择器变化
-        sehuatang(), //上次失败因为增加了新验证
-        zodgame(),  //上次失败因为页面重定向timeout设置太小
-        zodgame_BUX(), //同上
-        sketchupbar(), //疑似同上
+        bisi(),  
+        sehuatang(),
+        zodgame(),  
+        zodgame_BUX(), 
+        sketchupbar(), 
         pojie52(),  
     ]);
     await browser.close();
@@ -66,7 +66,7 @@ async function autoSign(){
         const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
-        await sign_click(page,sitename,cookies_zodgame,url,30000,selector1,selector2); 
+        await sign_click(page,sitename,cookies_zodgame,url,45000,selector1,selector2); 
     }
 
     async function zodgame_BUX() {
@@ -76,7 +76,7 @@ async function autoSign(){
         const selector = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
         await getCookies(cookies_zodgame, sitename, name_md5)
-        await sign_wait(page, sitename, cookies_zodgame, url,30000, selector);
+        await sign_wait(page, sitename, cookies_zodgame, url,45000, selector);
     }
     
     async function sketchupbar(){
