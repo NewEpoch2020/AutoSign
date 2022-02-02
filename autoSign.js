@@ -66,7 +66,7 @@ async function autoSign(){
         const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
-        await sign_click(page,sitename,cookies_zodgame,url,30000,selector1,selector2); 
+        await sign_click(page,sitename,cookies_zodgame,url,60000,selector1,selector2); 
     }
 
     async function zodgame_BUX() {
