@@ -161,10 +161,8 @@ async function autoSign(){
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
-        await page.goto(url, {
-            timeout: timeout
-        });
-        //await page.waitForTimeout(timeout);
+        await page.goto(url, { waitUntil: "networkidle0" });
+        await page.waitForTimeout(timeout);
         try {
             for(let i = 0;i < selectors.length;i++){
                 //await page.waitForFunction(`document.querySelector("${selectors[i]}")`);
@@ -185,10 +183,8 @@ async function autoSign(){
 
     async function sign_wait(page, sitename, cookies, url, timeout, selector) {
         await page.setCookie(...cookies);
-        await page.goto(url, {
-            timeout: timeout
-        });
-        //await page.waitForTimeout(timeout);
+        await page.goto(url, { waitUntil: "networkidle0" });
+        await page.waitForTimeout(timeout);
         for (let i = 1; i <= 3; i++) {
             try {
                 await page.waitForSelector(selector);
@@ -210,10 +206,8 @@ async function autoSign(){
     async function sign_SeHua(page, sitename, cookies, url, timeout, ...selectors) {
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies);
-        await page.goto(url, {
-            timeout: timeout
-        });
-        //await page.waitForTimeout(timeout);
+        await page.goto(url, { waitUntil: "networkidle0" });
+        await page.waitForTimeout(timeout);
         try {
 
             await page.waitForSelector(selectors[0]);
