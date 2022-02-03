@@ -28,7 +28,7 @@ async function autoSign(){
         //bisi(),  
         //sehuatang(),
         zodgame(),  
-        zodgame_BUX(), 
+        //zodgame_BUX(), 
         //sketchupbar(), 
         //pojie52(),  
     ]);
