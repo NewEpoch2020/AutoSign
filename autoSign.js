@@ -25,12 +25,12 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        //bisi(),  
-        //sehuatang(),
+        bisi(),  
+        sehuatang(),
         zodgame(),  
-        //zodgame_BUX(), 
-        //sketchupbar(), 
-        //pojie52(),  
+        zodgame_BUX(), 
+        sketchupbar(), 
+        pojie52(),  
     ]);
     await browser.close();
     
