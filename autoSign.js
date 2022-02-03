@@ -66,7 +66,7 @@ async function autoSign(){
         const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
-        await sign_click(page,sitename,cookies_zodgame,url,50000,selector1,selector2); 
+        await sign_click(page,sitename,cookies_zodgame,url,60000,selector1,selector2); 
     }
 
     async function zodgame_BUX() {
@@ -76,7 +76,7 @@ async function autoSign(){
         const selector = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
         await getCookies(cookies_zodgame, sitename, name_md5)
-        await sign_wait(page, sitename, cookies_zodgame, url,50000, selector);
+        await sign_wait(page, sitename, cookies_zodgame, url,60000, selector);
     }
     
     async function sketchupbar(){
