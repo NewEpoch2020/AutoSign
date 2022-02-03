@@ -28,7 +28,6 @@ async function autoSign(){
         bisi(),  
         sehuatang(),
         zodgame(),  
-        zodgame_BUX(), 
         sketchupbar(), 
         pojie52(),  
     ]);
@@ -62,14 +61,17 @@ async function autoSign(){
         const sitename = "zodgame";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign";
+        const url_BUX = "https://zodgame.xyz/plugin.php?id=jnbux";
         const selector1 = '#wl';
-        const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';    
+        const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';  
+        const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
         await sign_click(page,sitename,cookies_zodgame,url,60000,selector1,selector2); 
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX,60000, selector_BUX);
     }
 
-    async function zodgame_BUX() {
+/*    async function zodgame_BUX() {
         const sitename = "zodgame";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://zodgame.xyz/plugin.php?id=jnbux";
@@ -78,7 +80,7 @@ async function autoSign(){
         await getCookies(cookies_zodgame, sitename, name_md5)
         await sign_wait(page, sitename, cookies_zodgame, url,60000, selector);
     }
-    
+*/    
     async function sketchupbar(){
         const sitename = "sketchupbar";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
