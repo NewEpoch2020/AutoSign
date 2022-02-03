@@ -210,8 +210,10 @@ async function autoSign(){
     async function sign_SeHua(page, sitename, cookies, url, timeout, ...selectors) {
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies);
-        await page.goto(url, { waitUntil: "networkidle2" });
-        await page.waitForTimeout(timeout);
+        await page.goto(url, {
+            timeout: timeout
+        });
+        //await page.waitForTimeout(timeout);
         try {
 
             await page.waitForSelector(selectors[0]);
