@@ -66,10 +66,10 @@ async function autoSign(){
         const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';  
         const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
-        await page.setDefaultNavigationTimeout(50000);
+        await page.setDefaultNavigationTimeout(60000);
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
-        await sign_click(page,sitename,cookies_zodgame,url,100000,selector1,selector2); 
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX,100000, selector_BUX);
+        await sign_click(page,sitename,cookies_zodgame,url,60000,selector1,selector2); 
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX,60000, selector_BUX);
     }
 
 /*    async function zodgame_BUX() {
@@ -169,7 +169,7 @@ async function autoSign(){
         try {
             for(let i = 0;i < selectors.length;i++){
                 //await page.waitForFunction(`document.querySelector("${selectors[i]}")`);
-                await page.waitForSelector(selectors[i]);
+                await page.waitForSelector(selectors[i],{ timeout: 60000 });
                 console.log(sitename +  ": i = " + i + '，Succeed to find selector: ' +  selectors[i]);
                 await page.waitForTimeout(1000);
                 await page.click(selectors[i]);
@@ -190,7 +190,7 @@ async function autoSign(){
         await page.waitForTimeout(timeout);
         for (let i = 1; i <= 3; i++) {
             try {
-                await page.waitForSelector(selector);
+                await page.waitForSelector(selector,{ timeout: 60000 });
                 console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
                 await page.waitForTimeout(3000);
                 await page.click(selector);
