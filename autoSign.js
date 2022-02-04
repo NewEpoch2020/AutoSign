@@ -26,11 +26,11 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        //bisi(),  
-        //sehuatang(),
-        zodgame(),  
-        //sketchupbar(), 
-        //pojie52(),  
+        bisi(),  
+        sehuatang(),
+        //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
+        sketchupbar(), 
+        pojie52(),  
     ]);
     await browser.close();
     
@@ -43,7 +43,7 @@ async function autoSign(){
         const selector3 = "button[name='signsubmit']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
-        await sign_SeHua(page, sitename, cookies_Sehuatang, url,15000, selector1, selector2, selector3);
+        await sign_SeHua(page, sitename, cookies_Sehuatang, url,10000, selector1, selector2, selector3);
     }
     
     async function bisi(){
@@ -55,7 +55,7 @@ async function autoSign(){
         const selector3 = "#qiandao > p > button"; 
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_bisi,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_bisi,url,15000,selector1,selector2,selector3);
+        await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
     }    
     
     async function zodgame(){
@@ -91,7 +91,7 @@ async function autoSign(){
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_sketchupbar,sitename,name_md5);
-        await sign_click(page,sitename,cookies_sketchupbar,url,20000,selector);
+        await sign_click(page,sitename,cookies_sketchupbar,url,15000,selector);
     }
 
     async function pojie52(){
@@ -101,7 +101,7 @@ async function autoSign(){
         const selector = ".qq_bind[src='https://static.52pojie.cn/static/image/common/qds.png']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_pojie52,sitename,name_md5);
-        await sign_click(page,sitename,cookies_pojie52,url,20000,selector);
+        await sign_click(page,sitename,cookies_pojie52,url,15000,selector);
     }
     
 //--------------------------------------------------------------------------------------------------//
