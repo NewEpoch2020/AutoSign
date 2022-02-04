@@ -25,11 +25,11 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        bisi(),  
-        sehuatang(),
+        //bisi(),  
+        //sehuatang(),
         zodgame(),  
-        sketchupbar(), 
-        pojie52(),  
+        //sketchupbar(), 
+        //pojie52(),  
     ]);
     await browser.close();
     
@@ -66,9 +66,10 @@ async function autoSign(){
         const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';  
         const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
+        await page.setDefaultNavigationTimeout(50000);
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
-        await sign_click(page,sitename,cookies_zodgame,url,60000,selector1,selector2); 
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX,60000, selector_BUX);
+        await sign_click(page,sitename,cookies_zodgame,url,100000,selector1,selector2); 
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX,100000, selector_BUX);
     }
 
 /*    async function zodgame_BUX() {
@@ -163,7 +164,7 @@ async function autoSign(){
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
-        await page.goto(url, { waitUntil: "networkidle0" });
+        await page.goto(url, {waitUntil: "networkidle0"});
         await page.waitForTimeout(timeout);
         try {
             for(let i = 0;i < selectors.length;i++){
@@ -185,7 +186,7 @@ async function autoSign(){
 
     async function sign_wait(page, sitename, cookies, url, timeout, selector) {
         await page.setCookie(...cookies);
-        await page.goto(url, { waitUntil: "networkidle0" });
+        await page.goto(url, {waitUntil: "networkidle0"});
         await page.waitForTimeout(timeout);
         for (let i = 1; i <= 3; i++) {
             try {
