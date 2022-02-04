@@ -105,7 +105,7 @@ async function autoSign(){
     
 //--------------------------------------------------------------------------------------------------//
     async function logAndGetCookies(page,url,cookies,sitename,name_md5){
-        try{    
+/*        try{    
             //console.log("1");
             cookies = await JSON.parse(fs.readFileSync(
                 path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json")
@@ -114,7 +114,7 @@ async function autoSign(){
         }catch (err){
             //console.log("2");
             console.log(`Failed to load ${sitename} cookies.` + err); 
-        }    
+        }    */
         //console.log("3");
         await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
