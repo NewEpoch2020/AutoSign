@@ -19,6 +19,7 @@ async function autoSign(){
 
     const browser = await puppeteer.launch({
         headless: true,
+        ignoreDefaultArgs: ["--enable-automation"]
  /*       args: [
             `--window-size=1920,1080`,  
         ]*/
@@ -68,8 +69,8 @@ async function autoSign(){
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(60000);
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
-        await sign_click(page,sitename,cookies_zodgame,url,60000,selector1,selector2); 
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX,60000, selector_BUX);
+        await sign_click(page,sitename,cookies_zodgame,url,15000,selector1,selector2); 
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX,150000, selector_BUX);
     }
 
 /*    async function zodgame_BUX() {
@@ -105,7 +106,7 @@ async function autoSign(){
     
 //--------------------------------------------------------------------------------------------------//
     async function logAndGetCookies(page,url,cookies,sitename,name_md5){
-/*        try{    
+        try{    
             //console.log("1");
             cookies = await JSON.parse(fs.readFileSync(
                 path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json")
@@ -114,7 +115,7 @@ async function autoSign(){
         }catch (err){
             //console.log("2");
             console.log(`Failed to load ${sitename} cookies.` + err); 
-        }    */
+        }    
         //console.log("3");
         await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
