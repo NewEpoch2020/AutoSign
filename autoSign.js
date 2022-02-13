@@ -242,7 +242,7 @@ async function autoSign(){
             await page.waitForSelector(selectors[2],{ timeout: 60000 });
             console.log(sitename +  ": i = " + 2 + '，Succeed to find selector: ' +  selectors[2]);                    
             await page.click(selectors[2]); 
-            await page.waitForTimeout(5000);
+            await page.waitForTimeout(10000);
             console.log(`Succeed to comment on ${sitename}!`);
         }catch (err){
             console.log(`Failed to comment on ${sitename}!\n` + err);
