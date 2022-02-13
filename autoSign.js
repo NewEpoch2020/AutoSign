@@ -67,7 +67,7 @@ async function autoSign(){
         const selector1 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(4) > a";
         const selector2 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(3) > a";    
         const selector3 = "#textarea";    
-        const selector4 = "div[class='com-form-button-r'] button:nth-child(1)";    
+        const selector4 = "#respond > div.com-form > div.com-form-button > div.com-form-button-r > button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_acghh,sitename,name_md5);       
         await sign_click(page,sitename,cookies_acghh,url,20000,selector1);
