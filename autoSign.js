@@ -16,6 +16,7 @@ async function autoSign(){
     var cookies_sketchupbar = eval(process.env.SKETCHUPBAR_COOKIES);
     var cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
     var cookies_bisi = eval(process.env.BISI_COOKIES); 
+    var cookies_acghh = eval(process.env.ACGHH_COOKIES); 
 
     const browser = await puppeteer.launch({
         headless: true,
@@ -31,6 +32,7 @@ async function autoSign(){
         //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
         sketchupbar(), 
         pojie52(),  
+        acghh()
     ]);
     await browser.close();
     
@@ -57,6 +59,20 @@ async function autoSign(){
         await logAndGetCookies(page,url,cookies_bisi,sitename,name_md5);       
         await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
     }    
+    
+    async function acghh(){
+        const sitename = "acghh";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
+        const url = "https://acgg18.cc/task";
+        const selector1 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(4) > a";
+        const selector2 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(3) > a";    
+        const selector3 = "#textarea";    
+        const selector4 = "#respond > div.com-form > div.com-form-button > div.com-form-button-r > button:nth-child(2)";    
+        const page = await browser.newPage();
+        await logAndGetCookies(page,url,cookies_acghh,sitename,name_md5);       
+        await sign_click(page,sitename,cookies_acghh,url,20000,selector1);
+        await comment_acghh(page,sitename,cookies_acghh,url,20000,selector2,selector3,selector4);
+    }     
     
     async function zodgame(){
         const sitename = "zodgame";
@@ -204,6 +220,34 @@ async function autoSign(){
                 axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
                 process.exit(1);
             }
+        }
+    }
+    
+     async function comment_acghh(page,sitename,cookies,url,timeout,...selectors){ 
+        console.log(`Start sign in ${sitename}...`);
+        await page.setCookie(...cookies); 
+        await page.goto(url, {waitUntil: "networkidle0"});
+        await page.waitForTimeout(timeout);
+        try {
+            await page.waitForSelector(selectors[0],{ timeout: 60000 });
+            console.log(sitename +  ": 1 = " + 1 + '，Succeed to find selector: ' +  selectors[0]);
+            await page.waitForTimeout(1000);
+            await page.click(selectors[0]);
+            await page.waitForTimeout(10000);
+            await page.waitForSelector(selectors[1],{ timeout: 60000 });
+            console.log(sitename +  ": 2 = " + 2 + '，Succeed to find selector: ' +  selectors[1]);           
+            await page.$eval(`${selectors[1]}`, (el, re) => {
+                return el.value = re;
+            }, "666");
+            await page.waitForSelector(selectors[3],{ timeout: 60000 });
+            console.log(sitename +  ": 3 = " + 3 + '，Succeed to find selector: ' +  selectors[2]);                    
+            await page.click(selectors[2]); 
+            await page.waitForTimeout(5000);
+            console.log(`Succeed to comment on ${sitename}!`);
+        }catch (err){
+            console.log(`Failed to comment on ${sitename}!\n` + err);
+            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
+            process.exit(1);
         }
     }
     
