@@ -70,7 +70,7 @@ async function autoSign(){
         const selector4 = "#respond > div.com-form > div.com-form-button > div.com-form-button-r";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_acghh,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_acghh,url,20000,selector1);
+        //await sign_click(page,sitename,cookies_acghh,url,20000,selector1);
         await comment_acghh(page,sitename,cookies_acghh,url,20000,selector2,selector3,selector4);
     }     
     
