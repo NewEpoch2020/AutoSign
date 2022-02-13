@@ -67,7 +67,7 @@ async function autoSign(){
         const selector1 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(4) > a";
         const selector2 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(3) > a";    
         const selector3 = "#textarea";    
-        const selector4 = "#respond > div.com-form > div.com-form-button > div.com-form-button-r > button:nth-child(2)";    
+        const selector4 = "div[class='com-form-button-r'] button:nth-child(1)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_acghh,sitename,name_md5);       
         await sign_click(page,sitename,cookies_acghh,url,20000,selector1);
@@ -224,23 +224,23 @@ async function autoSign(){
     }
     
      async function comment_acghh(page,sitename,cookies,url,timeout,...selectors){ 
-        console.log(`Start sign in ${sitename}...`);
+        console.log(`Start comment on ${sitename}...`);
         await page.setCookie(...cookies); 
         await page.goto(url, {waitUntil: "networkidle0"});
         await page.waitForTimeout(timeout);
         try {
             await page.waitForSelector(selectors[0],{ timeout: 60000 });
-            console.log(sitename +  ": 1 = " + 1 + '，Succeed to find selector: ' +  selectors[0]);
+            console.log(sitename +  ": i = " + 0 + '，Succeed to find selector: ' +  selectors[0]);
             await page.waitForTimeout(1000);
             await page.click(selectors[0]);
             await page.waitForTimeout(10000);
             await page.waitForSelector(selectors[1],{ timeout: 60000 });
-            console.log(sitename +  ": 2 = " + 2 + '，Succeed to find selector: ' +  selectors[1]);           
+            console.log(sitename +  ": i = " + 1 + '，Succeed to find selector: ' +  selectors[1]);           
             await page.$eval(`${selectors[1]}`, (el, re) => {
                 return el.value = re;
             }, "666");
-            await page.waitForSelector(selectors[3],{ timeout: 60000 });
-            console.log(sitename +  ": 3 = " + 3 + '，Succeed to find selector: ' +  selectors[2]);                    
+            await page.waitForSelector(selectors[2],{ timeout: 60000 });
+            console.log(sitename +  ": i = " + 2 + '，Succeed to find selector: ' +  selectors[2]);                    
             await page.click(selectors[2]); 
             await page.waitForTimeout(5000);
             console.log(`Succeed to comment on ${sitename}!`);
