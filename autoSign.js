@@ -63,15 +63,16 @@ async function autoSign(){
     async function acghh(){
         const sitename = "acghh";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
-        const url = "https://acgg18.cc/task";
+        const url1 = "https://acgg18.cc/task";
+        const url2 = "https://acgg18.cc/circle";
         const selector1 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(4) > a";
-        const selector2 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(3) > a";    
-        const selector3 = "#textarea";    
-        const selector4 = "#respond > div.com-form > div.com-form-button > div.com-form-button-r";    
+        const selector2 = "section:nth-child(1) div:nth-child(3) div:nth-child(2) button:nth-child(1)";    
+        const selector3 = "#topic-comment-form > div.topic-comment-left > textarea[placeholder='您的看法']"; 
+        const selector4 = "#topic-comment-form > div.topic-comment-right > button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_acghh,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_acghh,url,20000,selector1);
-        await comment_acghh(page,sitename,cookies_acghh,url,20000,selector2,selector3,selector4);
+        await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
+        await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
     }     
     
     async function zodgame(){
