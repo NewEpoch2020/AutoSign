@@ -66,7 +66,7 @@ async function autoSign(){
         const url1 = "https://acgg18.cc/task";
         const url2 = "https://acgg18.cc/circle";
         const selector1 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(4) > a";
-        const selector2 = "section:nth-child(1) div:nth-child(3) div:nth-child(2) button:nth-child(1)";    
+        const selector2 = "section:nth-child(1) div:nth-child(3) div:nth-child(2) button:nth-child(1) span:nth-child(1)";    
         const selector3 = "#topic-comment-form > div.topic-comment-left > textarea[placeholder='您的看法']"; 
         const selector4 = "#topic-comment-form > div.topic-comment-right > button:nth-child(2)";    
         const page = await browser.newPage();
