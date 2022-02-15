@@ -27,12 +27,12 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        //bisi(),  
-        //sehuatang(),
+        sehuatang(),
+        bisi(),  
+        acghh(),
         //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
-        //sketchupbar(), 
-        //pojie52(),  
-        acghh()
+        sketchupbar(), 
+        pojie52(),   
     ]);
     await browser.close();
     
@@ -71,7 +71,7 @@ async function autoSign(){
         const selector4 = "#topic-comment-form > div.topic-comment-right > button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
-        //await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
+        await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
         await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
     }     
     
@@ -242,7 +242,7 @@ async function autoSign(){
             }, "666");
             await page.waitForSelector(selectors[2],{ timeout: 60000 });
             console.log(sitename +  ": i = " + 2 + '，Succeed to find selector: ' +  selectors[2]);                    
-            //await page.click(selectors[2]); 
+            await page.click(selectors[2]); 
             await page.waitForTimeout(10000);
             console.log(`Succeed to comment on ${sitename}!`);
         }catch (err){
