@@ -70,7 +70,7 @@ async function autoSign(){
         const selector3 = "#topic-comment-form > div.topic-comment-left > textarea[placeholder='您的看法']"; 
         const selector4 = "#topic-comment-form > div.topic-comment-right > button:nth-child(2)";    
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_acghh,sitename,name_md5);       
+        await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
         await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
         await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
     }     
