@@ -191,7 +191,7 @@ async function autoSign(){
                 console.log(sitename +  ": i = " + i + '，Succeed to find selector: ' +  selectors[i]);
                 await page.waitForTimeout(1000);
                 await page.click(selectors[i]);
-                await page.waitForTimeout(5000);
+                await page.waitForTimeout(10000);
             }
             await page.waitForTimeout(5000);
             console.log(`Succeed to sign in ${sitename}!`);
