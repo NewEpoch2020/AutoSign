@@ -63,7 +63,7 @@ async function autoSign(){
     async function acghh(){
         const sitename = "acghh";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
-        const url1 = "https://acgg18.cc";
+        const url1 = "https://acgg18.cc/";
         const url2 = "https://acgg18.cc/circle";
         const selector1 = "#b2-widget-mission-5 > div > div > div:nth-child(2) > div.user-w-qd-list > div.user-w-qd-list-title.b2-radius > p.picked > span";
         const selector2 = "section:nth-child(1) div:nth-child(3) div:nth-child(2) button:nth-child(1) span:nth-child(1)";    
