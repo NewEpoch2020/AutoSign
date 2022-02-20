@@ -71,7 +71,7 @@ async function autoSign(){
         const selector4 = "#topic-comment-form > div.topic-comment-right > button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_acghh,url1,40000,selector1);
+        await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
         //await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
     }     
     
@@ -182,7 +182,7 @@ async function autoSign(){
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
-        await page.goto(url, {waitUntil: "networkidle0"});
+        await page.goto(url, {timeout: 60000});
         await page.waitForTimeout(timeout);
         try {
             for(let i = 0;i < selectors.length;i++){
