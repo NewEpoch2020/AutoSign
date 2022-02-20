@@ -32,7 +32,7 @@ async function autoSign(){
         acghh(),
         //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
        //sketchupbar(), 
-        /pojie52(),   
+        //pojie52(),   
     ]);
     await browser.close();
     
