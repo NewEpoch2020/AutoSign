@@ -27,12 +27,12 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        //sehuatang(),
-       // bisi(),  
+        sehuatang(),
+        bisi(),  
         acghh(),
         //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
-       //sketchupbar(), 
-        //pojie52(),   
+        sketchupbar(), 
+        pojie52(),   
     ]);
     await browser.close();
     
@@ -72,7 +72,7 @@ async function autoSign(){
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
         await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
-        //await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
+        await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
     }     
     
     async function zodgame(){
