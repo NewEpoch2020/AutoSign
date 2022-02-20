@@ -27,12 +27,12 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        sehuatang(),
-        bisi(),  
+        //sehuatang(),
+       // bisi(),  
         acghh(),
         //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
-        sketchupbar(), 
-        pojie52(),   
+       //sketchupbar(), 
+        /pojie52(),   
     ]);
     await browser.close();
     
@@ -63,16 +63,16 @@ async function autoSign(){
     async function acghh(){
         const sitename = "acghh";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
-        const url1 = "https://acgg18.cc/task";
+        const url1 = "https://acgg18.cc";
         const url2 = "https://acgg18.cc/circle";
-        const selector1 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(4) > a";
+        const selector1 = "#b2-widget-mission-5 > div > div > div:nth-child(2) > div.user-w-qd-list > div.user-w-qd-list-title.b2-radius > p.picked > span";
         const selector2 = "section:nth-child(1) div:nth-child(3) div:nth-child(2) button:nth-child(1) span:nth-child(1)";    
         const selector3 = "#topic-comment-form > div.topic-comment-left > textarea"; 
         const selector4 = "#topic-comment-form > div.topic-comment-right > button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
         await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
-        await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
+        //await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
     }     
     
     async function zodgame(){
