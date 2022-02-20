@@ -63,9 +63,9 @@ async function autoSign(){
     async function acghh(){
         const sitename = "acghh";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
-        const url1 = "https://acgg18.cc/";
+        const url1 = "https://acgg18.cc/mission/today";
         const url2 = "https://acgg18.cc/circle";
-        const selector1 = "#b2-widget-mission-5 > div > div > div:nth-child(2) > div.user-w-qd-list > div.user-w-qd-list-title.b2-radius > p.picked > span";
+        const selector1 = "div[class='custom-page-row gold-row mg-t'] div button";
         const selector2 = "section:nth-child(1) div:nth-child(3) div:nth-child(2) button:nth-child(1) span:nth-child(1)";    
         const selector3 = "#topic-comment-form > div.topic-comment-left > textarea"; 
         const selector4 = "#topic-comment-form > div.topic-comment-right > button:nth-child(2)";    
@@ -182,7 +182,7 @@ async function autoSign(){
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
-        await page.goto(url, {timeout: 60000});
+        await page.goto(url, {waitUntil: "networkidle0"});
         await page.waitForTimeout(timeout);
         try {
             for(let i = 0;i < selectors.length;i++){
