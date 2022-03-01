@@ -27,11 +27,11 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        //sehuatang(),
-        //bisi(),  
-        acghh(),
-        //sketchupbar(), 
+        sehuatang(),
+        bisi(),    
+        sketchupbar(), 
         
+        //acghh(),
         //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
         //pojie52(),   
     ]);
