@@ -64,11 +64,11 @@ async function autoSign(){
         const sitename = "acghh";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url1 = "https://acgg18.cc/mission/today";
-        const url2 = "https://acgg18.cc/circle";
-        const selector1 = "div[class='custom-page-row gold-row mg-t'] div button";
-        const selector2 = "section:nth-child(1) div:nth-child(3) div:nth-child(2) button:nth-child(1) span:nth-child(1)";    
-        const selector3 = "#topic-comment-form > div.topic-comment-left > textarea"; 
-        const selector4 = "#topic-comment-form > div.topic-comment-right > button:nth-child(2)";    
+        const url2 = "https://acgg18.cc/task";
+        const selector1 = ".custom-page-row.gold-row.mg-t button";
+        const selector2 = ".task-day-list > ul > li:nth-child(3) > a";    
+        const selector3 = ".com-form-textarea #textarea"; 
+        const selector4 = ".com-form-button-r button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
         await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
