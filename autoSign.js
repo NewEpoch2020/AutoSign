@@ -72,8 +72,8 @@ async function autoSign(){
         const selector4 = ".circle-topic-list div:nth-child(2) section:nth-child(1) .topic-comment-right button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
-        //await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
-        await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
+        await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
+        //await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
     }     
     
     async function zodgame(){
