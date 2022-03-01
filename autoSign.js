@@ -67,7 +67,7 @@ async function autoSign(){
         const url1 = "https://acgg18.cc/mission/today";
         const url2 = "https://acgg18.cc/task";
         const selector1 = ".custom-page-row.gold-row.mg-t button";
-        const selector2 = ".task-day-list ul li:nth-child(3)";    
+        const selector2 = "#main > div:nth-child(2) > div:nth-child(1) > div.task-day-list > ul > li:nth-child(3) > a";    
         const selector3 = ".com-form-textarea #textarea"; 
         const selector4 = ".com-form-button-r button:nth-child(2)";    
         const page = await browser.newPage();
