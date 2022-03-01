@@ -67,12 +67,12 @@ async function autoSign(){
         const url1 = "https://acgg18.cc/mission/today";
         const url2 = "https://acgg18.cc/task";
         const selector1 = ".custom-page-row.gold-row.mg-t button";
-        const selector2 = ".task-day-list > ul > li:nth-child(3) > a";    
+        const selector2 = ".task-day-list ul li:nth-child(3)";    
         const selector3 = ".com-form-textarea #textarea"; 
         const selector4 = ".com-form-button-r button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
+        //await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
         await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
     }     
     
