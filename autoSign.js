@@ -14,7 +14,7 @@ async function autoSign(){
     var cookies_Sehuatang = eval(process.env.SEHUATANG_COOKIES);
     var cookies_zodgame = eval(process.env.ZODGAME_COOKIES);
     var cookies_sketchupbar = eval(process.env.SKETCHUPBAR_COOKIES);
-    //var cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
+    var cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
     var cookies_bisi = eval(process.env.BISI_COOKIES); 
     var cookies_acghh = eval(process.env.ACGHH_COOKIES); 
 
@@ -32,7 +32,7 @@ async function autoSign(){
         acghh(),
         //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
         sketchupbar(), 
-        pojie52(),   
+        //pojie52(),   
     ]);
     await browser.close();
     
