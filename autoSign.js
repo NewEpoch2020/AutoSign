@@ -76,8 +76,8 @@ async function autoSign(){
         const selector4 = ".circle-topic-list div:nth-child(2) section:nth-child(1) .topic-comment-right button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_acghh,url1,5000,selector1);
-        await comment_acghh(page,sitename,cookies_acghh,url2,5000,selector2,selector3,selector4);
+        await sign_click(page,sitename,cookies_acghh,url1,15000,selector1);
+        await comment_acghh(page,sitename,cookies_acghh,url2,15000,selector2,selector3,selector4);
     }     
     
     async function zodgame(){
@@ -91,7 +91,7 @@ async function autoSign(){
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
         //await sign_click(page,sitename,cookies_zodgame,url,5000,selector1,selector2); 
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX,10000, selector_BUX);
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX,15000, selector_BUX);
     }
 
 /*    async function zodgame_BUX() {
