@@ -34,9 +34,9 @@ async function autoSign(){
         //sehuatang(),
         //bisi(),    
         //sketchupbar(), 
-        pojie52(),  
+        //pojie52(),  
         //zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
-        //acghh(),
+        acghh(),
         
          
     ]);
