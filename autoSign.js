@@ -211,14 +211,18 @@ async function autoSign(){
         await page.waitForTimeout(timeout);
         for (let i = 1; i <= 3; i++) {
             try {
-                await page.waitForSelector(selector);
-                console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
-                //await page.waitForTimeout(3000);
-                await page.click(selector);
-                await page.waitForTimeout(30000);
-                await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-                await page.waitForTimeout(3000);
-
+                if (await page.$(selector) !== null){
+                    await page.waitForSelector(selector);
+                    console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
+                    //await page.waitForTimeout(3000);
+                    await page.click(selector);
+                    await page.waitForTimeout(30000);
+                    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+                    await page.waitForTimeout(3000);
+                }else{
+                    console.log(`No more BUX tasks found!`);
+                    return;        
+                }
             } catch (err) {
                 console.log(`Failed to sign in ${sitename}!\n` + err);
                 axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
