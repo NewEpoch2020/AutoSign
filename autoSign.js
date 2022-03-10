@@ -23,7 +23,7 @@ async function autoSign(){
     var cookies_acghh = eval(process.env.ACGHH_COOKIES); 
 
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         ignoreDefaultArgs: ["--enable-automation"]
  /*       args: [
             `--window-size=1920,1080`,  
