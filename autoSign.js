@@ -50,7 +50,7 @@ async function autoSign(){
         const selector3 = "button[name='signsubmit']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
-        await sign_SeHua(page, sitename, cookies_Sehuatang, url,10000, selector1, selector2, selector3);
+        await sign_SeHua(page, sitename, cookies_Sehuatang, url,3000, selector1, selector2, selector3);
     }
     
     async function bisi(){
@@ -62,7 +62,7 @@ async function autoSign(){
         const selector3 = "#qiandao > p > button"; 
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_bisi,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
+        await sign_click(page,sitename,cookies_bisi,url,3000,selector1,selector2,selector3);
     }    
     
     async function acghh(){
@@ -76,8 +76,8 @@ async function autoSign(){
         const selector4 = ".circle-topic-list div:nth-child(2) section:nth-child(1) .topic-comment-right button:nth-child(2)";    
         const page = await browser.newPage();
         await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_acghh,url1,20000,selector1);
-        //await comment_acghh(page,sitename,cookies_acghh,url2,20000,selector2,selector3,selector4);
+        await sign_click(page,sitename,cookies_acghh,url1,5000,selector1);
+        await comment_acghh(page,sitename,cookies_acghh,url2,5000,selector2,selector3,selector4);
     }     
     
     async function zodgame(){
@@ -89,10 +89,10 @@ async function autoSign(){
         const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';  
         const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) > div > div.bm_c > table > tbody > tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
-        await page.setDefaultNavigationTimeout(60000);
+        //await page.setDefaultNavigationTimeout(60000);
         await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
-        await sign_click(page,sitename,cookies_zodgame,url,15000,selector1,selector2); 
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX,150000, selector_BUX);
+        await sign_click(page,sitename,cookies_zodgame,url,3000,selector1,selector2); 
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX,3000, selector_BUX);
     }
 
 /*    async function zodgame_BUX() {
@@ -123,7 +123,7 @@ async function autoSign(){
         const selector = "#um > p:nth-child(3) > a:nth-child(1) > img";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_pojie52,sitename,name_md5);
-        await sign_click(page,sitename,cookies_pojie52,url,15000,selector);
+        await sign_click(page,sitename,cookies_pojie52,url,3000,selector);
     }
     
 //--------------------------------------------------------------------------------------------------//
@@ -192,13 +192,12 @@ async function autoSign(){
         try {
             for(let i = 0;i < selectors.length;i++){
                 //await page.waitForFunction(`document.querySelector("${selectors[i]}")`);
-                await page.waitForSelector(selectors[i],{ timeout: 60000 });
+                await page.waitForSelector(selectors[i]);
                 console.log(sitename +  ": i = " + i + '，Succeed to find selector: ' +  selectors[i]);
                 await page.waitForTimeout(1000);
                 await page.click(selectors[i]);
-                await page.waitForTimeout(10000);
             }
-            await page.waitForTimeout(5000);
+            await page.waitForTimeout(3000);
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
@@ -213,13 +212,13 @@ async function autoSign(){
         await page.waitForTimeout(timeout);
         for (let i = 1; i <= 3; i++) {
             try {
-                await page.waitForSelector(selector,{ timeout: 60000 });
+                await page.waitForSelector(selector);
                 console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
-                await page.waitForTimeout(3000);
+                //await page.waitForTimeout(3000);
                 await page.click(selector);
-                await page.waitForTimeout(20000);
+                await page.waitForTimeout(30000);
                 await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-                await page.waitForTimeout(5000);
+                await page.waitForTimeout(3000);
 
             } catch (err) {
                 console.log(`Failed to sign in ${sitename}!\n` + err);
@@ -266,13 +265,13 @@ async function autoSign(){
 
             await page.waitForSelector(selectors[0]);
             console.log(sitename + ": i = " + 0 + '，Succeed to find selector: ' + selectors[0]);
-            await page.waitForTimeout(1000);
+            //await page.waitForTimeout(1000);
             const signBtnText = await page.$eval(`${selectors[0]}`, el => el.innerText);
             if (signBtnText == "今日已签到") {
                 process.exit(1);
             }
             await page.click(selectors[0]);
-            await page.waitForTimeout(5000);
+            //await page.waitForTimeout(5000);
             await page.waitForSelector(selectors[1]);
             console.log(sitename + ": i = " + 1 + '，Succeed to find selector: ' + selectors[1]);
             const verifiText = await page.$eval(`${selectors[1]} + form > span > div > table > tbody > tr > td`, el => el.innerText.match(/\d+ [\+\-\*] \d+/));
@@ -280,9 +279,9 @@ async function autoSign(){
             await page.$eval(`${selectors[1]} + form > span > div > table > tbody > tr > td > input`, (el, re) => {
                 return el.value = re;
             }, verifyResult);
-            await page.waitForTimeout(5000);
+            //await page.waitForTimeout(5000);
             await page.click(selectors[2]);
-            await page.waitForTimeout(5000);
+            //await page.waitForTimeout(5000);
             console.log(`Succeed to sign in ${sitename}!`);
         } catch (err) {
             console.log(`Failed to sign in ${sitename}!\n ` + err);
