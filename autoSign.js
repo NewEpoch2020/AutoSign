@@ -1,4 +1,8 @@
+const Xvfb = require('xvfb');
+var xvfb = new Xvfb();
+xvfb.startSync();
 autoSign();
+xvfb.stopSync();
 
 async function autoSign(){
     const puppeteer = require('puppeteer-extra');
@@ -27,12 +31,12 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        sehuatang(),
-        bisi(),    
-        sketchupbar(), 
+        //sehuatang(),
+        //bisi(),    
+        //sketchupbar(), 
         
         //acghh(),
-        //zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
+        zodgame(),   // 无头模式无法通过 Cloudflare ddos防护
         //pojie52(),   
     ]);
     await browser.close();
