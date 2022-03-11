@@ -184,7 +184,7 @@ async function autoSign(){
                     await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
                     await page.waitForTimeout(3000);
                 }else{
-                    console.log(`No more BUX tasks found!`);
+                    console.log(`No more selector found!`);
                     return;        
                 }
             } catch (err) {
