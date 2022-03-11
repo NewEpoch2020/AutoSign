@@ -163,7 +163,7 @@ async function autoSign(){
                 await page.waitForTimeout(5000);
                 await page.click(selectors[i]);
             }
-            await page.waitForTimeout(3000);
+            await page.waitForTimeout(5000);
             console.log(`Succeed to sign in ${sitename}!`);
         }catch (err){
             console.log(`Failed to sign in ${sitename}!\n` + err);
