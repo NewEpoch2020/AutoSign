@@ -28,11 +28,11 @@ async function autoSign(){
     });
 
     await Promise.all([ //没有顺序的概念
-        //sketchupbar(), 
-        pojie52(),     
-        //sehuatang(),
-        //bisi(),     
-        //zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
+        sketchupbar(), 
+        //pojie52(),     
+        sehuatang(),
+        bisi(),     
+        zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
         //acghh() 
     ]);
     await browser.close();
@@ -46,7 +46,7 @@ async function autoSign(){
         const selector3 = "button[name='signsubmit']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,3000,cookies_Sehuatang,sitename,name_md5);
-        await sign_SeHua(page, sitename, cookies_Sehuatang, url,5000, selector1, selector2, selector3);
+        await sign_SeHua(page, sitename, cookies_Sehuatang, url,10000, selector1, selector2, selector3);
     }
     
     async function bisi(){
@@ -58,7 +58,7 @@ async function autoSign(){
         const selector3 = "#qiandao > p > button"; 
         const page = await browser.newPage();
         await logAndGetCookies(page,url,3000,cookies_bisi,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_bisi,url,5000,selector1,selector2,selector3);
+        await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
     }    
     
     async function acghh(){
