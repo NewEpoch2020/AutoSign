@@ -45,7 +45,7 @@ async function autoSign(){
         const selector2 = "#fctrl_pc_click_ddsign";
         const selector3 = "button[name='signsubmit']";
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_Sehuatang,sitename,name_md5);
+        await logAndGetCookies(page,url,3000,cookies_Sehuatang,sitename,name_md5);
         await sign_SeHua(page, sitename, cookies_Sehuatang, url,5000, selector1, selector2, selector3);
     }
     
@@ -57,7 +57,7 @@ async function autoSign(){
         const selector2 = "#wl";    
         const selector3 = "#qiandao > p > button"; 
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_bisi,sitename,name_md5);       
+        await logAndGetCookies(page,url,3000,cookies_bisi,sitename,name_md5);       
         await sign_click(page,sitename,cookies_bisi,url,5000,selector1,selector2,selector3);
     }    
     
@@ -71,7 +71,7 @@ async function autoSign(){
         const selector3 = ".circle-topic-list div:nth-child(2) section:nth-child(1) .topic-comment-left textarea"; 
         const selector4 = ".circle-topic-list div:nth-child(2) section:nth-child(1) .topic-comment-right button:nth-child(2)";    
         const page = await browser.newPage();
-        await logAndGetCookies(page,url1,cookies_acghh,sitename,name_md5);       
+        await logAndGetCookies(page,url1,3000,cookies_acghh,sitename,name_md5);       
         await sign_click(page,sitename,cookies_acghh,url1,15000,selector1);
         await comment_acghh(page,sitename,cookies_acghh,url2,15000,selector2,selector3,selector4);
     }     
@@ -85,7 +85,7 @@ async function autoSign(){
         const selector2 = '#qiandao > table > tbody > tr > td > div > a > img';  
         const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_zodgame,sitename,name_md5);
+        await logAndGetCookies(page,url,3000,cookies_zodgame,sitename,name_md5);
         //await sign_click(page,sitename,cookies_zodgame,url,5000,selector1,selector2); 
         await sign_wait(page, sitename, cookies_zodgame, url_BUX,15000, selector_BUX);
     }
@@ -97,8 +97,8 @@ async function autoSign(){
         const selector = "#JD_sign > img";
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_sketchupbar,sitename,name_md5);
-        await sign_click(page,sitename,cookies_sketchupbar,url,5000,selector);
+        await logAndGetCookies(page,url,3000,cookies_sketchupbar,sitename,name_md5);
+        await sign_click(page,sitename,cookies_sketchupbar,url,10000,selector);
     }
 
     async function pojie52(){
@@ -107,15 +107,15 @@ async function autoSign(){
         const url = "https://www.52pojie.cn/";
         const selector = "#um > p:nth-child(3) > a:nth-child(1)";
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,cookies_pojie52,sitename,name_md5);
-        await sign_click(page,sitename,cookies_pojie52,url,5000,selector);
+        await logAndGetCookies(page,url,3000,cookies_pojie52,sitename,name_md5);
+        await sign_click(page,sitename,cookies_pojie52,url,15000,selector);
     }
     
     
 //--------------------------------------------------------------------------------------------------//
     
     
-    async function logAndGetCookies(page,url,cookies,sitename,name_md5){
+    async function logAndGetCookies(page,url,timeout,cookies,sitename,name_md5){
         try{    
             cookies = await JSON.parse(fs.readFileSync(
                 path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json")
@@ -126,6 +126,7 @@ async function autoSign(){
         }    
         await page.setCookie(...cookies); 
         await page.goto(url,{waitUntil: "networkidle0"});
+        await page.waitForTimeout(timeout);
         try{         
             fs.writeFileSync(
                 path.resolve(__dirname, ".cache/" + name_md5 + "_cache.json"),
