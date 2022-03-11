@@ -29,8 +29,7 @@ async function autoSign(){
 
     await Promise.all([ //没有顺序的概念
         //sketchupbar(), 
-        pojie52(), 
-        
+        pojie52(),     
         //sehuatang(),
         //bisi(),     
         zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
@@ -106,7 +105,7 @@ async function autoSign(){
         const sitename = "52pojie";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.52pojie.cn/";
-        const selector = "#um > p:nth-child(3) > a:nth-child(1) > img";
+        const selector = "#um > p:nth-child(3) > a:nth-child(1)";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,cookies_pojie52,sitename,name_md5);
         await sign_click(page,sitename,cookies_pojie52,url,5000,selector);
