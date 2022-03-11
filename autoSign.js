@@ -97,7 +97,7 @@ async function autoSign(){
         const selector = "#JD_sign";
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
         const page = await browser.newPage();
-        await logAndGetCookies(page,url,3000,cookies_sketchupbar,sitename,name_md5);
+        await logAndGetCookies(page,url,10000,cookies_sketchupbar,sitename,name_md5);
         await sign_click(page,sitename,cookies_sketchupbar,url,15000,selector);
     }
 
@@ -125,7 +125,7 @@ async function autoSign(){
             console.log(`Failed to load ${sitename} cookies.` + err); 
         }    
         await page.setCookie(...cookies); 
-        await page.goto(url,{waitUntil: "networkidle0"});
+        await page.goto(url,{waitUntil: "networkidle2"});
         await page.waitForTimeout(timeout);
         try{         
             fs.writeFileSync(
