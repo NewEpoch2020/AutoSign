@@ -32,7 +32,7 @@ async function autoSign(){
         //pojie52(),     
         sehuatang(),
         bisi(),     
-        zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
+        //zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
         //acghh() 
     ]);
     await browser.close();
@@ -46,7 +46,7 @@ async function autoSign(){
         const selector3 = "button[name='signsubmit']";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,3000,cookies_Sehuatang,sitename,name_md5);
-        await sign_SeHua(page, sitename, cookies_Sehuatang, url,10000, selector1, selector2, selector3);
+        await sign_SeHua(page, sitename, cookies_Sehuatang, url,15000, selector1, selector2, selector3);
     }
     
     async function bisi(){
@@ -58,7 +58,7 @@ async function autoSign(){
         const selector3 = "#qiandao > p > button"; 
         const page = await browser.newPage();
         await logAndGetCookies(page,url,3000,cookies_bisi,sitename,name_md5);       
-        await sign_click(page,sitename,cookies_bisi,url,10000,selector1,selector2,selector3);
+        await sign_click(page,sitename,cookies_bisi,url,15000,selector1,selector2,selector3);
     }    
     
     async function acghh(){
@@ -86,7 +86,7 @@ async function autoSign(){
         const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
         await logAndGetCookies(page,url,3000,cookies_zodgame,sitename,name_md5);
-        //await sign_click(page,sitename,cookies_zodgame,url,5000,selector1,selector2); 
+        await sign_click(page,sitename,cookies_zodgame,url,5000,selector1,selector2); 
         await sign_wait(page, sitename, cookies_zodgame, url_BUX,15000, selector_BUX);
     }
   
@@ -98,7 +98,7 @@ async function autoSign(){
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,3000,cookies_sketchupbar,sitename,name_md5);
-        await sign_click(page,sitename,cookies_sketchupbar,url,10000,selector);
+        await sign_click(page,sitename,cookies_sketchupbar,url,15000,selector);
     }
 
     async function pojie52(){
