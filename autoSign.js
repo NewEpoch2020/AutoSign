@@ -244,7 +244,7 @@ async function autoSign(){
             console.log(sitename + ": i = " + 1 + '，Succeed to find selector: ' + selectors[1]);
             const verifiText = await page.$eval(`${selectors[1]} + form > span > div > table > tbody > tr > td`, el => el.innerText.match(/\d+ [\+\-\*] \d+/));
             const verifyResult = await page.evaluate(`${verifiText[0]}`);
-            await page.type(`${selectors[1]} + form > span > div > table > tbody > tr > td > input`, verifyResult, { delay: 100 });
+            await page.type(`${selectors[1]} + form > span > div > table > tbody > tr > td > input`, `${verifyResult}`, { delay: 600 });
  /*           await page.$eval(`${selectors[1]} + form > span > div > table > tbody > tr > td > input`, (el, re) => {
                 return el.value = re;
             }, verifyResult);
