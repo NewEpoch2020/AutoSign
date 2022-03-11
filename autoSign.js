@@ -24,7 +24,7 @@ async function autoSign(){
 
     const browser = await puppeteer.launch({
         headless: false,
-        ignoreDefaultArgs: ["--enable-automation"]
+//        ignoreDefaultArgs: ["--enable-automation"]
     });
 
     await Promise.all([ //没有顺序的概念
@@ -32,7 +32,7 @@ async function autoSign(){
         pojie52(),     
         //sehuatang(),
         //bisi(),     
-        zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
+        //zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
         //acghh() 
     ]);
     await browser.close();
