@@ -38,5 +38,5 @@ jobs:
           if [ -e ~/cache.tgz ]; then tar -zxf ~/cache.tgz; fi  # 如果当前目录下有 cache.tgz 压缩文件，则进行解压
           sudo apt-get update
           sudo apt-get install xvfb
-          xvfb-run --server-args="-screen 0 1024x768x24" node autoSign.js          
+          xvfb-run --server-args="-screen 0 1920x1080x24" node autoSign.js          
           tar -zcf ~/cache.tgz .cache # 把.cache 目录压缩成 cache.tgz 文件
