@@ -159,10 +159,7 @@ async function autoSign(){
                 await page.waitForSelector(selectors[i]);
                 console.log(sitename +  ": i = " + i + '，Succeed to find selector: ' +  selectors[i]);
                 await page.waitForTimeout(1000);
-                //await page.click(selectors[i]);
-                await page.evaluate(() => {
-                  document.querySelector(selectors[i]).click();
-                });    
+                await page.click(selectors[i]);
             }
             await page.waitForTimeout(3000);
             console.log(`Succeed to sign in ${sitename}!`);
@@ -182,9 +179,7 @@ async function autoSign(){
                 if (await page.$(selector) !== null){
                     await page.waitForSelector(selector);
                     console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
-                    await page.evaluate(() => {
-                      document.querySelector(selector).click();
-                    });
+                    await page.click(selector);
                     await page.waitForTimeout(30000);
                     await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
                     await page.waitForTimeout(3000);
