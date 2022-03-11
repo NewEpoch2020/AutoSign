@@ -31,7 +31,7 @@ async function autoSign(){
         sketchupbar(), 
         //pojie52(),     
         sehuatang(),
-        bisi(),     
+        //bisi(),     
         //zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
         //acghh() 
     ]);
@@ -94,7 +94,7 @@ async function autoSign(){
         const sitename = "sketchupbar";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.sketchupbar.com/sign.php?mod=sign";
-        const selector = "#JD_sign > img";
+        const selector = "#JD_sign";
         //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,3000,cookies_sketchupbar,sitename,name_md5);
