@@ -181,7 +181,7 @@ async function autoSign(){
                     console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
                     await page.click(selector);
                     await page.waitForTimeout(30000);
-                    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+                    await page.reload();
                     await page.waitForTimeout(3000);
                 }else{
                     console.log(`No more selector found!`);
