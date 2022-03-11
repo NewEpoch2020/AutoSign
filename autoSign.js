@@ -95,11 +95,11 @@ async function autoSign(){
         const sitename = "sketchupbar";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
         const url = "https://www.sketchupbar.com/sign.php?mod=sign";
-        const selector = "#JD_sign";
-        //const selector2 = "#nv_plugin > div.Footer > div.DDIY > div.dzpBox > div > div.banner > div > img";
+        const selector1 = "#JD_sign";
+        const selector2 = ".turnplate img";
         const page = await browser.newPage();
         await logAndGetCookies(page,url,10000,cookies_sketchupbar,sitename,name_md5);
-        await sign_click(page,sitename,cookies_sketchupbar,url,15000,selector);
+        await sign_click(page,sitename,cookies_sketchupbar,url,15000,selector1,selector2);
     }
 
     async function pojie52(){
@@ -160,7 +160,7 @@ async function autoSign(){
             for(let i = 0;i < selectors.length;i++){
                 await page.waitForSelector(selectors[i]);
                 console.log(sitename +  ": i = " + i + '，Succeed to find selector: ' +  selectors[i]);
-                await page.waitForTimeout(1000);
+                await page.waitForTimeout(5000);
                 await page.click(selectors[i]);
             }
             await page.waitForTimeout(3000);
@@ -182,7 +182,7 @@ async function autoSign(){
                     await page.waitForSelector(selector);
                     console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
                     await page.click(selector);
-                    await page.waitForTimeout(45000);
+                    await page.waitForTimeout(40000);
                     await page.reload({waitUntil: "networkidle0"});
                     await page.waitForTimeout(3000);
                 }else{
