@@ -1,8 +1,8 @@
-const Xvfb = require('xvfb');
-var xvfb = new Xvfb();
-xvfb.startSync();
+//const Xvfb = require('xvfb');
+//var xvfb = new Xvfb();
+//xvfb.startSync();
 autoSign();
-xvfb.stopSync();
+//xvfb.stopSync();
 
 async function autoSign(){
     const puppeteer = require('puppeteer-extra');
@@ -23,8 +23,8 @@ async function autoSign(){
     var cookies_acghh = eval(process.env.ACGHH_COOKIES); 
 
     const browser = await puppeteer.launch({
-        headless: false,
-        //ignoreDefaultArgs: ["--enable-automation"]
+        headless: true,
+        ignoreDefaultArgs: ["--enable-automation"]
     });
 
     await Promise.all([ //没有顺序的概念
@@ -32,7 +32,7 @@ async function autoSign(){
         pojie52(),        
         sehuatang(),
         bisi(),     
-        zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
+        //zodgame(),   // 目前无头模式利用 stealth 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。  
         //acghh() 
     ]);
     await browser.close();
