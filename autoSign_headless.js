@@ -15,7 +15,8 @@ async function autoSign() {
     var cookies_sketchupbar = eval(process.env.SKETCHUPBAR_COOKIES);
     var cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
     var cookies_bisi = eval(process.env.BISI_COOKIES);
-
+    var cookies_javbus = eval(process.env.JAVBUS_COOKIES);
+    
     const browser = await puppeteer.launch({
         headless: true,
         ignoreDefaultArgs: ["--enable-automation"]
@@ -27,6 +28,7 @@ async function autoSign() {
 
         sehuatang(),
         bisi(),
+        javbus(),
         //cunhua(),
         //ugg(),
     ]);
@@ -56,6 +58,14 @@ async function autoSign() {
         await sign_click(page, sitename, cookies_bisi, url, 15000, selector1, selector2, selector3);
     }
 
+    async function javbus() {
+        const sitename = "javbus";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
+        const url = "https://www.javbus.com/forum/";
+        const page = await browser.newPage();
+        await logAndGetCookies(page, url, 10000, cookies_javbus, sitename, name_md5);
+    }
+    
     async function sketchupbar() {
         const sitename = "sketchupbar";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
