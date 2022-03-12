@@ -23,10 +23,10 @@ async function autoSign() {
 
     await Promise.all([ //没有顺序的概念
         sketchupbar(),
-        //pojie52(),
+        pojie52(),
 
-        //sehuatang(),
-        //bisi(),
+        sehuatang(),
+        bisi(),
     ]);
     await browser.close();
 
@@ -62,7 +62,7 @@ async function autoSign() {
         const selector2 = ".turnplate img";
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 5000, cookies_sketchupbar, sitename, name_md5);
-        await sign_click(page, sitename, cookies_sketchupbar, url, 15000, selector2);
+        await sign_click(page, sitename, cookies_sketchupbar, url, 15000, selector1, selector2);
     }
 
     async function pojie52() {
