@@ -26,7 +26,7 @@ async function autoSign() {
 
     await Promise.all([ //没有顺序的概念
         zodgame(),
-        //acghh(),
+        acghh(),
     ]);
     await browser.close();
 
