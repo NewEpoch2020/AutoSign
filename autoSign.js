@@ -153,6 +153,7 @@ async function autoSign(){
     async function sign_click(page,sitename,cookies,url,timeout,...selectors){ 
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies); 
+        await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, {waitUntil: "networkidle0"});
         await page.waitForTimeout(timeout);
         try {
@@ -173,6 +174,7 @@ async function autoSign(){
 
     async function sign_wait(page, sitename, cookies, url, timeout, selector) {
         await page.setCookie(...cookies);
+        await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, {waitUntil: "networkidle0"});
         await page.waitForTimeout(timeout);
         for (let i = 1; i <= 3; i++) {
@@ -227,6 +229,7 @@ async function autoSign(){
     async function sign_SeHua(page, sitename, cookies, url, timeout, ...selectors) {
         console.log(`Start sign in ${sitename}...`);
         await page.setCookie(...cookies);
+        await page.setDefaultNavigationTimeout(60000);
         await page.goto(url, { waitUntil: "networkidle0" });
         await page.waitForTimeout(timeout);
         try {
