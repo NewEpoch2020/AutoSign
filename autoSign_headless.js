@@ -27,6 +27,8 @@ async function autoSign() {
 
         sehuatang(),
         bisi(),
+        //cunhua(),
+        //ugg(),
     ]);
     await browser.close();
 
