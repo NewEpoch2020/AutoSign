@@ -27,6 +27,7 @@ jobs:
         env:
           SEHUATANG_COOKIES: ${{secrets.SEHUATANG_COOKIES}}
           BISI_COOKIES: ${{secrets.BISI_COOKIES}}
+          JAVBUS_COOKIES: ${{secrets.JAVBUS_COOKIES}}
           POJIE52_COOKIES: ${{secrets.POJIE52_COOKIES}}
           SKETCHUPBAR_COOKIES: ${{secrets.SKETCHUPBAR_COOKIES}}
           BARK_URL: ${{secrets.BARK_URL}}
