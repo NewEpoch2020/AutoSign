@@ -56,7 +56,7 @@ async function autoSign() {
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 5000, cookies_zodgame, sitename, name_md5);
         //await sign_click(page, sitename, cookies_zodgame, url, 30000, selector1, selector2);
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 50000, selector_BUX);
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 60000, selector_BUX);
     }
 
     //--------------------------------------------------------------------------------------------------//
@@ -111,8 +111,8 @@ async function autoSign() {
         await page.setCookie(...cookies);
         await page.goto(url);
         await page.waitForTimeout(timeout);
-        try {
-            for (let i = 1; i <= 3; i++) {   
+        //try {
+            for (var i = 1; i <= 3; i++) {
                     if (await page.$(selector) !== null) {
                         await page.waitForSelector(selector);
                         console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
@@ -123,13 +123,14 @@ async function autoSign() {
                     } else {
                         console.log(`No more selector found!`);
                         return;
-                    }
-             }
-        } catch (err) {
+                    }  
+           }
+/*      } catch (err) {
             console.log(`Failed to sign in ${sitename}!\n` + err);
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
             process.exit(1);
         }
+*/
     }
 
     async function comment_acghh(page, sitename, cookies, url, timeout, ...selectors) {
