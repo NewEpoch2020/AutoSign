@@ -56,7 +56,7 @@ async function autoSign() {
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 5000, cookies_zodgame, sitename, name_md5);
         //await sign_click(page, sitename, cookies_zodgame, url, 30000, selector1, selector2);
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 45000, selector_BUX);
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 50000, selector_BUX);
     }
 
     //--------------------------------------------------------------------------------------------------//
