@@ -111,28 +111,28 @@ async function autoSign() {
         await page.setCookie(...cookies);
         await page.goto(url);
         await page.waitForTimeout(timeout);
-        //try {
+        try {
             for (var i = 1; i <= 3; i++) {
-                    if (await page.$(selector) !== null) {
-                        await page.waitForSelector(selector);
-                        console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
-                        await page.click(selector);
-                        await page.waitForTimeout(35000);
-                        await page.evaluate(() => {
-                           location.reload(true)
-                        })
-                        await page.waitForTimeout(15000);
-                    } else {
-                        console.log(`No more selector found!`);
-                        return;
-                    }  
+                if (await page.$(selector) !== null) {
+                    await page.waitForSelector(selector);
+                    console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
+                    await page.click(selector);
+                    await page.waitForTimeout(35000);
+                    await page.evaluate(() => {
+                       location.reload(true)
+                    })
+                    await page.waitForTimeout(15000);
+                } else {
+                    console.log(`No more selector found!`);
+                    return;
+                }  
            }
-/*      } catch (err) {
+        } catch (err) {
             console.log(`Failed to sign in ${sitename}!\n` + err);
             axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
             process.exit(1);
         }
-*/
+
     }
 
     async function comment_acghh(page, sitename, cookies, url, timeout, ...selectors) {
