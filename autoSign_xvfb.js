@@ -118,8 +118,8 @@ async function autoSign() {
                         console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
                         await page.click(selector);
                         await page.waitForTimeout(40000);
-                        await page.reload({ timeout: 0 });
-                        await page.waitForTimeout(10000);
+                        //await page.reload({ timeout: 0 });
+                        //await page.waitForTimeout(10000);
                     } else {
                         console.log(`No more selector found!`);
                         return;
