@@ -119,7 +119,7 @@ async function autoSign() {
                     await page.click(selector);
                     await page.waitForTimeout(timeout);
                     await page.evaluate(() => {
-                       location.reload(true)
+                       location.reload(true);
                     })
                     await page.waitForTimeout(timeout);
                 } else {
