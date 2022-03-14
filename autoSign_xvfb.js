@@ -55,8 +55,8 @@ async function autoSign() {
         const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 15000, cookies_zodgame, sitename, name_md5);
-        await sign_click(page, sitename, cookies_zodgame, url, 60000, selector1, selector2);
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 60000, selector_BUX);
+        await sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2);
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 40000, selector_BUX);
     }
 
     //--------------------------------------------------------------------------------------------------//
@@ -117,10 +117,12 @@ async function autoSign() {
                     await page.waitForSelector(selector);
                     console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
                     await page.click(selector);
-                    await page.waitForTimeout(timeout - 20000);
-                    await page.evaluate(() => {
+                    await page.waitForTimeout(timeout);
+/*                    await page.evaluate(() => {
                        location.reload(true);
                     })
+*/
+                    await page.goto(url);
                     await page.waitForTimeout(timeout);
                 } else {
                     console.log(`No more selector found!`);
