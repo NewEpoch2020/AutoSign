@@ -56,7 +56,7 @@ async function autoSign() {
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 15000, cookies_zodgame, sitename, name_md5);
         await sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2);
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 40000, selector_BUX);
+        await zod_bux(page, sitename, cookies_zodgame, url_BUX, 40000, selector_BUX);
     }
 
     //--------------------------------------------------------------------------------------------------//
@@ -107,7 +107,7 @@ async function autoSign() {
         }
     }
 
-    async function sign_wait(page, sitename, cookies, url, timeout, selector) {
+    async function zod_bux(page, sitename, cookies, url, timeout, selector) {
         await page.setCookie(...cookies);
         await page.goto(url);
         await page.waitForTimeout(timeout);
