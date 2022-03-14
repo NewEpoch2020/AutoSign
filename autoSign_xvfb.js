@@ -117,7 +117,7 @@ async function autoSign() {
                     await page.waitForSelector(selector);
                     console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
                     await page.click(selector);
-                    await page.waitForTimeout(timeout);
+                    await page.waitForTimeout(timeout - 20000);
                     await page.evaluate(() => {
                        location.reload(true);
                     })
