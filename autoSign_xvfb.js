@@ -108,32 +108,21 @@ async function autoSign() {
     }
 
     async function zod_bux(page, sitename, cookies, url, timeout, selector) {
-        await page.setCookie(...cookies);
-        await page.goto(url);
-        await page.waitForTimeout(timeout);
-        try {
-            for (var i = 1; i <= 3; i++) {
-                if (await page.$(selector) !== null) {
-                    await page.waitForSelector(selector);
-                    console.log(sitename + ": i = " + i + "，Succeed to find selector: " + selector);
-                    await page.click(selector);
-                    await page.waitForTimeout(timeout);
-/*                    await page.evaluate(() => {
-                       location.reload(true);
-                    })
-*/
-                    await page.goto(url);
-                    await page.waitForTimeout(timeout);
-                } else {
-                    console.log(`No more selector found!`);
-                    return;
-                }  
-           }
-        } catch (err) {
-            console.log(`Failed to sign in ${sitename}!\n` + err);
-            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
-            process.exit(1);
-        }
+        for (var i = 1; i <= 3; i++) {
+            await page.setCookie(...cookies);
+            await page.goto(url);
+            await page.waitForTimeout(timeout);                
+            if (await page.$(selector)) {
+                await page.waitForSelector(selector);
+                let time = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                console.log(time + " " + sitename + ": i = " + i + "，Succeed to find selector: " + selector);
+                await page.click(selector);
+                await page.waitForTimeout(timeout);
+            } else {
+                console.log(`No more selector found!`);
+                return;
+            }  
+       }
 
     }
 
