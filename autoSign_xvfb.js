@@ -26,7 +26,7 @@ async function autoSign() {
 
     await Promise.all([ //没有顺序的概念
         zodgame(),
-        //acghh(),
+        acghh(),
     ]);
     await browser.close();
 
@@ -55,7 +55,7 @@ async function autoSign() {
         const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 15000, cookies_zodgame, sitename, name_md5);
-        //await sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2);
+        await sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2);
         await zod_bux(page, sitename, cookies_zodgame, url_BUX, 40000, selector_BUX);
     }
 
