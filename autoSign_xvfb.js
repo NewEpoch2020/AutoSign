@@ -55,8 +55,8 @@ async function autoSign() {
         const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) tr:nth-child(3) > td:nth-child(6) > a';
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 15000, cookies_zodgame, sitename, name_md5);
-        await sign_click(page, sitename, cookies_zodgame, url, 50000, selector1, selector2);
-        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 50000, selector_BUX);
+        await sign_click(page, sitename, cookies_zodgame, url, 60000, selector1, selector2);
+        await sign_wait(page, sitename, cookies_zodgame, url_BUX, 60000, selector_BUX);
     }
 
     //--------------------------------------------------------------------------------------------------//
