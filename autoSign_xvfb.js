@@ -26,7 +26,7 @@ async function autoSign() {
 
     await Promise.all([ //没有顺序的概念
         zodgame(),
-       //acghh(),
+        acghh(),
     ]);
     await browser.close();
 
@@ -52,12 +52,13 @@ async function autoSign() {
         const url_BUX = "https://zodgame.xyz/plugin.php?id=jnbux";
         const selector1 = '#wl';
         const selector2 = '#qiandao > table > tbody > tr > td > div > a';
-        const selector_BUX = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) tr:nth-child(3) > td:nth-child(6) > a';
+        const selector3 = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) tr:nth-child(3) > td:nth-child(6) > a';
+        const selector4 = '#fwin_dialog_submit';
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 15000, cookies_zodgame, sitename, name_md5);
         await Promise.all([
-           //sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2),
-           zod_bux(page, sitename, cookies_zodgame, url_BUX, 40000, selector_BUX)
+           sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2),
+           zod_bux(page, sitename, cookies_zodgame, url_BUX, 40000, selector3, selector4)
         ]);        
     }
 
@@ -109,28 +110,21 @@ async function autoSign() {
         }
     }
 
-    async function zod_bux(page, sitename, cookies, url, timeout, selector) {
-        try {    
-            for (var i = 1; i <= 3; i++) {
-                await page.setCookie(...cookies);
-                await page.goto(url);
-                await page.waitForTimeout(timeout);                
-                if (await page.$(selector)) {
-                    await page.waitForSelector(selector);
-                    let time = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-                    console.log(time + " " + sitename + ": i = " + i + "，Succeed to find selector: " + selector);
-                    await page.click(selector);
-                    await page.waitForTimeout(timeout);
-                } else {
-                    console.log(`No more selector found!`);
-                    return;
-                }  
-           }
-        } catch (err) {
-            console.log(`Failed to comment on ${sitename}!\n` + err);
-            axios.post(barkURL + `[Sign] Failed to sign in ${sitename}!`);
-            process.exit(1);
-        }
+    async function zod_bux(page, sitename, cookies, url, timeout, ...selectors) {
+            await page.setCookie(...cookies);
+            await page.goto(url);
+            await page.waitForTimeout(timeout);            
+            while (await page.$(selectors[0])) {       
+                await page.waitForSelector(selectors[0]);
+                await page.click(selectors[0]);
+                await page.waitForTimeout(timeout);
+                await page.waitForSelector(selectors[1]);
+                let time = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                console.log(time + " " + sitename + ": i = " + i + "，Succeed to find selector: " + selectors[1]);
+                await page.click(selectors[1]);
+                await page.waitForTimeout(timeout);
+            }
+            console.log(`No more selector found!`);
     }
 
     async function comment_acghh(page, sitename, cookies, url, timeout, ...selectors) {
