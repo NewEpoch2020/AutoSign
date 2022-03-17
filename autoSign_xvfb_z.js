@@ -34,13 +34,11 @@ async function autoSign() {
     const selector4 = '#fwin_dialog_submit';
     const page = await browser.newPage();
     await logAndGetCookies(page, url, 15000, cookies_zodgame, sitename, name_md5);
-    await Promise.all([
-       sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2),
-       zod_bux(page, sitename, cookies_zodgame, url_BUX, 40000, selector3, selector4)
-    ]); 
+    await sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2);
+    await zod_bux(page, sitename, cookies_zodgame, url_BUX, 40000, selector3, selector4);
     await browser.close();
 
-    
+}
 
     //--------------------------------------------------------------------------------------------------//
 
@@ -90,6 +88,7 @@ async function autoSign() {
         }
     }
 
+
     async function zod_bux(page, sitename, cookies, url, timeout, ...selectors) {
             await page.setCookie(...cookies);
             await page.goto(url);
@@ -106,6 +105,3 @@ async function autoSign() {
             }
             console.log(`No more selector found!`);
     }
-
-
-}
