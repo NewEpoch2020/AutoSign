@@ -1,4 +1,4 @@
-name: "AutoSign_xvfb"
+name: "AutoSign_xvfb_a"
 on:
   #push: # 触发机制为push操作
   #  branches: main
@@ -25,7 +25,6 @@ jobs:
         run: npm install # 安装依赖
       - name: Run AutoSign_xvfb
         env:
-          ZODGAME_COOKIES: ${{secrets.ZODGAME_COOKIES}}
           ACGHH_COOKIES: ${{secrets.ACGHH_COOKIES}}
           BARK_URL: ${{secrets.BARK_URL}}
         run: |
