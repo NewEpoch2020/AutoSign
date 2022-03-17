@@ -1,3 +1,14 @@
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
+const path = require("path");
+const fs = require("fs");
+const crypto = require('crypto');
+const axios = require('axios');
+
+//别忘了workflow里设置环境变量
+const barkURL = process.env.BARK_URL;
+
 // 目前无头模式利用 StealthPlugin() 无法通过 Cloudflare 安全检查，利用 xvfb 实现有头模式。 
 const Xvfb = require('xvfb');
 var xvfb = new Xvfb();
@@ -6,16 +17,6 @@ autoSign();
 xvfb.stopSync();
 
 async function autoSign() {
-    const puppeteer = require('puppeteer-extra');
-    const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-    puppeteer.use(StealthPlugin());
-    const path = require("path");
-    const fs = require("fs");
-    const crypto = require('crypto');
-    const axios = require('axios');
-
-    //别忘了workflow里设置环境变量
-    const barkURL = process.env.BARK_URL;
     var cookies_zodgame = eval(process.env.ZODGAME_COOKIES);
 
     const browser = await puppeteer.launch({
