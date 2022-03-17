@@ -23,7 +23,7 @@ jobs:
           restore-keys: ${{ secrets.CACHE_NAME }}-
       - name: Install dependencies
         run: npm install # 安装依赖
-      - name: Run AutoSign_xvfb
+      - name: Run AutoSign_xvfb_a
         env:
           ACGHH_COOKIES: ${{secrets.ACGHH_COOKIES}}
           BARK_URL: ${{secrets.BARK_URL}}
