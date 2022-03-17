@@ -91,6 +91,7 @@ async function autoSign() {
 
 
     async function zod_bux(page, sitename, cookies, url, timeout, ...selectors) {
+            console.log(`Start sign in ${sitename} bux...`);
             await page.setCookie(...cookies);
             await page.goto(url);
             await page.waitForTimeout(timeout);            
