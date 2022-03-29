@@ -95,8 +95,10 @@ async function autoSign() {
     async function zod_bux(page, sitename, cookies, url, timeout, ...selectors) {
             await page.setCookie(...cookies);
             await page.goto(url);
-            await page.waitForTimeout(timeout);            
-            while (await page.$(selectors[0])) {       
+            await page.waitForTimeout(timeout);
+            let i = 0;
+            while (await page.$(selectors[0])) { 
+                i++;
                 await page.waitForSelector(selectors[0]);
                 await page.click(selectors[0]);
                 await page.waitForTimeout(timeout);
