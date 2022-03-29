@@ -106,7 +106,9 @@ async function autoSign() {
                 let time = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
                 console.log(time + " " + sitename + ": i = " + i + "，Succeed to find selector: " + selectors[1]);
                 await page.click(selectors[1]);
-                await page.waitForTimeout(timeout);
+                await page.waitForTimeout(5000);
+                await page.reload();
+                
             }
             console.log(`No more selector found!`);
     }
