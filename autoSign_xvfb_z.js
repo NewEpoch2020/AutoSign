@@ -40,8 +40,8 @@ async function autoSign() {
         const selector4 = '#fwin_dialog_submit';
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 15000, cookies_zodgame, sitename, name_md5);
-        //await sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2);
-        await zod_bux(page, sitename, cookies_zodgame, url_BUX, 50000, selector3, selector4);   
+        await sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2);
+        //await zod_bux(page, sitename, cookies_zodgame, url_BUX, 50000, selector3, selector4);   
     }
 
     //--------------------------------------------------------------------------------------------------//
