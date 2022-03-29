@@ -16,7 +16,6 @@ async function autoSign() {
 
     //别忘了workflow里设置环境变量
     const barkURL = process.env.BARK_URL;
-    var cookies_zodgame = eval(process.env.ZODGAME_COOKIES);
     var cookies_acghh = eval(process.env.ACGHH_COOKIES);
 
     const browser = await puppeteer.launch({
@@ -25,7 +24,6 @@ async function autoSign() {
     });
 
     await Promise.all([ //没有顺序的概念
-        //zodgame(),
         acghh(),
     ]);
     await browser.close();
@@ -45,22 +43,6 @@ async function autoSign() {
         await comment_acghh(page, sitename, cookies_acghh, url2, 15000, selector2, selector3, selector4);
     }
 
-    async function zodgame() {
-        const sitename = "zodgame";
-        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
-        const url = "https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign";
-        const url_BUX = "https://zodgame.xyz/plugin.php?id=jnbux";
-        const selector1 = '#wl';
-        const selector2 = '#qiandao > table > tbody > tr > td > div > a';
-        const selector3 = '#wp > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(4) tr:nth-child(3) > td:nth-child(6) > a';
-        const selector4 = '#fwin_dialog_submit';
-        const page = await browser.newPage();
-        await logAndGetCookies(page, url, 15000, cookies_zodgame, sitename, name_md5);
-        await Promise.all([
-           sign_click(page, sitename, cookies_zodgame, url, 40000, selector1, selector2),
-           zod_bux(page, sitename, cookies_zodgame, url_BUX, 40000, selector3, selector4)
-        ]);        
-    }
 
     //--------------------------------------------------------------------------------------------------//
 
@@ -110,22 +92,6 @@ async function autoSign() {
         }
     }
 
-    async function zod_bux(page, sitename, cookies, url, timeout, ...selectors) {
-            await page.setCookie(...cookies);
-            await page.goto(url);
-            await page.waitForTimeout(timeout);            
-            while (await page.$(selectors[0])) {       
-                await page.waitForSelector(selectors[0]);
-                await page.click(selectors[0]);
-                await page.waitForTimeout(timeout);
-                await page.waitForSelector(selectors[1]);
-                let time = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-                console.log(time + " " + sitename + ": i = " + i + "，Succeed to find selector: " + selectors[1]);
-                await page.click(selectors[1]);
-                await page.waitForTimeout(timeout);
-            }
-            console.log(`No more selector found!`);
-    }
 
     async function comment_acghh(page, sitename, cookies, url, timeout, ...selectors) {
         console.log(`Start comment on ${sitename}...`);
