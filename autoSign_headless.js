@@ -16,6 +16,7 @@ async function autoSign() {
     var cookies_pojie52 = eval(process.env.POJIE52_COOKIES);
     var cookies_bisi = eval(process.env.BISI_COOKIES);
     var cookies_javbus = eval(process.env.JAVBUS_COOKIES);
+    var cookies_lixiang = eval(process.env.LIXIANG_COOKIES);
     
     const browser = await puppeteer.launch({
         headless: true,
@@ -23,17 +24,28 @@ async function autoSign() {
     });
 
     await Promise.all([ //没有顺序的概念
-        sketchupbar(),
-        pojie52(),
-
-        sehuatang(),
-        bisi(),
-        javbus(),
+        //sketchupbar(),
+        //pojie52(),
+        lixiang(),
+        //sehuatang(),
+        //bisi(),
+        //javbus(),
+        
         //cunhua(),
         //ugg(),
     ]);
     await browser.close();
 
+    async function lixiang() {
+        const sitename = "lixiang";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
+        const url = "https://www.55188.com/plugin.php?id=sign";
+        const selector = "#addsign";
+        const page = await browser.newPage();
+        await logAndGetCookies(page, url, 5000, cookies_lixiang, sitename, name_md5);
+        await sign_click(page, sitename, cookies_lixiang, url, 15000, selector);
+    }
+    
     async function sehuatang() {
         const sitename = "sehuatang";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
