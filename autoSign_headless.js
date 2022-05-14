@@ -24,12 +24,12 @@ async function autoSign() {
     });
 
     await Promise.all([ //没有顺序的概念
-        sketchupbar(),
-        pojie52(),
-        lixiang(),
+        //sketchupbar(),
+        //pojie52(),
+        //lixiang(),
         sehuatang(),
-        bisi(),
-        javbus(),
+       // bisi(),
+        //javbus(),
         
         //cunhua(),
         //ugg(),
@@ -163,9 +163,9 @@ async function autoSign() {
             }
             await page.click(selectors[0]);
             await page.waitForTimeout(10000);
-            await page.waitForSelector(selectors[1]);
+            await page.waitForSelector(selectors[1],{timeout:50000});
             console.log(sitename + ": i = " + 1 + '，Succeed to find selector: ' + selectors[1]);
-            await page.waitForTimeout(15000);
+            await page.waitForTimeout(5000);
             const verifiText = await page.$eval(`${selectors[1]} + form > span > div > table > tbody > tr > td`, el => el.innerText.match(/\d+ [\+\-\*] \d+/));
             const verifyResult = await page.evaluate(`${verifiText[0]}`);
             await page.type(`${selectors[1]} + form > span > div > table > tbody > tr > td > input`, `${verifyResult}`, { delay: 600 });
