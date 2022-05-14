@@ -154,7 +154,7 @@ async function autoSign() {
         await page.goto(url, { timeout: 0 });
         await page.waitForTimeout(timeout);
         try {
-            await page.waitForSelector(selectors[0]);
+            await page.waitForSelector(selectors[0],{timeout:50000});
             console.log(sitename + ": i = " + 0 + '，Succeed to find selector: ' + selectors[0]);
             await page.waitForTimeout(5000);
             const signBtnText = await page.$eval(`${selectors[0]}`, el => el.innerText);
@@ -163,7 +163,7 @@ async function autoSign() {
             }
             await page.click(selectors[0]);
             await page.waitForTimeout(10000);
-            await page.waitForSelector(selectors[1],{timeout:50000});
+            await page.waitForSelector(selectors[1]);
             console.log(sitename + ": i = " + 1 + '，Succeed to find selector: ' + selectors[1]);
             await page.waitForTimeout(5000);
             const verifiText = await page.$eval(`${selectors[1]} + form > span > div > table > tbody > tr > td`, el => el.innerText.match(/\d+ [\+\-\*] \d+/));
