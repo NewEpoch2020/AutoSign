@@ -17,20 +17,20 @@ async function autoSign() {
     var cookies_bisi = eval(process.env.BISI_COOKIES);
     var cookies_javbus = eval(process.env.JAVBUS_COOKIES);
     var cookies_lixiang = eval(process.env.LIXIANG_COOKIES);
-    
+
     const browser = await puppeteer.launch({
         headless: true,
         ignoreDefaultArgs: ["--enable-automation"]
     });
 
     await Promise.all([ //没有顺序的概念
-        //sketchupbar(),
-        //pojie52(),
-        //lixiang(),
+        sketchupbar(),
+        pojie52(),
+        lixiang(),
         sehuatang(),
-       // bisi(),
-        //javbus(),
-        
+        bisi(),
+        javbus(),
+
         //cunhua(),
         //ugg(),
     ]);
@@ -45,7 +45,7 @@ async function autoSign() {
         await logAndGetCookies(page, url, 5000, cookies_lixiang, sitename, name_md5);
         await sign_click(page, sitename, cookies_lixiang, url, 15000, selector);
     }
-    
+
     async function sehuatang() {
         const sitename = "sehuatang";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
@@ -77,7 +77,7 @@ async function autoSign() {
         const page = await browser.newPage();
         await logAndGetCookies(page, url, 10000, cookies_javbus, sitename, name_md5);
     }
-    
+
     async function sketchupbar() {
         const sitename = "sketchupbar";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
@@ -154,7 +154,7 @@ async function autoSign() {
         await page.goto(url, { timeout: 0 });
         await page.waitForTimeout(timeout);
         try {
-            await page.waitForSelector(selectors[0],{timeout:50000});
+            await page.waitForSelector(selectors[0], { timeout: 50000 });
             console.log(sitename + ": i = " + 0 + '，Succeed to find selector: ' + selectors[0]);
             await page.waitForTimeout(5000);
             const signBtnText = await page.$eval(`${selectors[0]}`, el => el.innerText);
