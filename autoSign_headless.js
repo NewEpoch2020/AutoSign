@@ -32,7 +32,7 @@ async function autoSign() {
         bisi(),
         javbus(),
         
-        joinquant(),
+        //joinquant(),
         //cunhua(),
         //ugg(),
     ]);
