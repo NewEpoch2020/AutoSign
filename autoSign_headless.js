@@ -17,6 +17,7 @@ async function autoSign() {
     var cookies_bisi = eval(process.env.BISI_COOKIES);
     var cookies_javbus = eval(process.env.JAVBUS_COOKIES);
     var cookies_lixiang = eval(process.env.LIXIANG_COOKIES);
+    var cookies_joinquant = eval(process.env.JOINQUANT_COOKIES);
 
     const browser = await puppeteer.launch({
         headless: true,
@@ -30,7 +31,8 @@ async function autoSign() {
         sehuatang(),
         bisi(),
         javbus(),
-
+        
+        joinquant(),
         //cunhua(),
         //ugg(),
     ]);
@@ -99,7 +101,16 @@ async function autoSign() {
         await sign_click(page, sitename, cookies_pojie52, url, 15000, selector);
     }
 
-
+    async function joinquant() {
+        const sitename = "joinquant";
+        const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
+        const url = "https://www.joinquant.com/view/user/floor?type=creditsdesc";
+        const selector = "div.jq-user-floor-menu__alias > button";
+        const page = await browser.newPage();
+        await logAndGetCookies(page, url, 5000, cookies_pojie52, sitename, name_md5);
+        await sign_click(page, sitename, cookies_joinquant, url, 15000, selector);
+    }    
+    
     //--------------------------------------------------------------------------------------------------//
 
 
@@ -180,7 +191,7 @@ async function autoSign() {
         } catch (err) {
             console.log(`Failed to sign in ${sitename}!\n ` + err);
             axios.post(barkURL + ` [Sign] Failed to sign in ${sitename}!`);
-            process.exit(1);
+            process.exit(1); 
         }
     }
 }
