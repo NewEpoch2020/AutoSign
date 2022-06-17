@@ -17,7 +17,7 @@ async function autoSign() {
     var cookies_bisi = eval(process.env.BISI_COOKIES);
     var cookies_javbus = eval(process.env.JAVBUS_COOKIES);
     var cookies_lixiang = eval(process.env.LIXIANG_COOKIES);
-    var cookies_joinquant = eval(process.env.JOINQUANT_COOKIES);
+    //var cookies_joinquant = eval(process.env.JOINQUANT_COOKIES);
 
     const browser = await puppeteer.launch({
         headless: true,
