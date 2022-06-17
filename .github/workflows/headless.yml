@@ -31,7 +31,7 @@ jobs:
           POJIE52_COOKIES: ${{secrets.POJIE52_COOKIES}}
           LIXIANG_COOKIES: ${{secrets.LIXIANG_COOKIES}}
           SKETCHUPBAR_COOKIES: ${{secrets.SKETCHUPBAR_COOKIES}}
-          JOINQUANT_COOKIES: ${{secrets.JOINQUANT_COOKIES}}
+          #JOINQUANT_COOKIES: ${{secrets.JOINQUANT_COOKIES}}
           BARK_URL: ${{secrets.BARK_URL}}
         run: |
           mkdir .cache
