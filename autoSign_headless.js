@@ -27,14 +27,14 @@ async function autoSign() {
     });
 
     await Promise.all([ //没有顺序的概念
-        //sketchupbar(),
-        //pojie52(),
-        //lixiang(),
-        //sehuatang(),
-        //bisi(),
-        //javbus(),
-        //xacg()
-        joinquant(),
+        sketchupbar(),
+        pojie52(),
+        lixiang(),
+        sehuatang(),
+        bisi(),
+        javbus(),
+        xacg()
+        joinquant()
         
         //cunhua(),
         //ugg(),
