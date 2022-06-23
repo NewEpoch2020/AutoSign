@@ -117,14 +117,11 @@ async function autoSign() {
     async function joinquant() {
         const sitename = "joinquant";
         const name_md5 = crypto.createHash('md5').update(sitename).digest('hex');
-        const url1 = "https://www.joinquant.com/view/community/list?listType=1";
-        const url2 = "https://www.joinquant.com/view/user/floor?type=creditsdesc";
-        const selector0 = "div.jq-c-list.jq-c-list_community > div:nth-child(5) > div > div.jq-c-list_community__title";
+        const url = "https://www.joinquant.com/view/user/floor?type=creditsdesc";
         const selector1 = "form.formPwdLogin";
         const selector2 = "div.jq-user-floor-menu__alias > button";
-        const selector3 = "dl > dd:nth-child(2) > div:nth-child(1) > div.el-card__body > div.card-footer > div > a > button";
         const page = await browser.newPage();
-        await jq_sign(page, sitename, url1, url2, a_jq, p_jq, 15000, selector0,selector1,selector2,selector3);
+        await jq_sign(page, sitename, url, a_jq, p_jq, 10000, selector1,selector2);
     }    
     
     //--------------------------------------------------------------------------------------------------//
@@ -175,29 +172,21 @@ async function autoSign() {
         }
     }
 
-    async function jq_sign(page, sitename, url1, url2, a_jq,p_jq,timeout, ...selectors) {
+    async function jq_sign(page, sitename, url, a_jq,p_jq,timeout, ...selectors) {
         console.log(`Start sign in ${sitename}...`);
-        await page.goto(url2, { timeout: 0 });
+        await page.goto(url, { timeout: 0 });
         await page.waitForTimeout(timeout);
         try {
-            await page.waitForSelector(selectors[1], { timeout: 30000 });
-            console.log(sitename + ": i = " + 0 + '，Succeed to find selector: ' + selectors[0]);
-            await page.waitForTimeout(3000);
-            await page.type(`${selectors[1]} > input.phone.pwd-phone`, `${a_jq}`, { delay: 600 });
-            await page.type(`${selectors[1]} > input.jq-login__password`, `${p_jq}`, { delay: 600 });
-            await page.waitForTimeout(1500);
-            await page.click(`${selectors[1]} > button`);
-            console.log(`Succeed to sign in ${sitename}!`);
-            await page.waitForTimeout(3000);
-            await page.click(`${selectors[2]}`);
-            await page.waitForTimeout(5000);
-            await page.goto(url1, { timeout: 0 });
             await page.waitForSelector(selectors[0], { timeout: 30000 });
-            await page.click(`${selectors[0]}`);
-            await page.waitForTimeout(5000);
-            await page.goto(url2, { timeout: 0 });
             await page.waitForTimeout(3000);
-            await page.click(`${selectors[3]}`);
+            await page.type(`${selectors[0]} > input.phone.pwd-phone`, `${a_jq}`, { delay: 400 });
+            await page.type(`${selectors[0]} > input.jq-login__password`, `${p_jq}`, { delay: 400 });
+            await page.waitForTimeout(1500);
+            await page.click(`${selectors[0]} > button`);
+            console.log(`Succeed to log in ${sitename}!`); 
+            await page.waitForSelector(selectors[1], { timeout: 30000 });
+            await page.click(`${selectors[1]}`);
+            console.log(`Succeed to sign in ${sitename}!`); 
         } catch (err) {
             console.log(`Failed to sign in ${sitename}!\n ` + err);
             axios.post(barkURL + ` [Sign] Failed to sign in ${sitename}!`);
