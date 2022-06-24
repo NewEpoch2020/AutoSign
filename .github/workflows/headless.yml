@@ -32,8 +32,8 @@ jobs:
           LIXIANG_COOKIES: ${{secrets.LIXIANG_COOKIES}}
           SKETCHUPBAR_COOKIES: ${{secrets.SKETCHUPBAR_COOKIES}}
           XACG_COOKIES: ${{secrets.XACG_COOKIES}}
-          JQ_A: ${{secrets.JQ_A}}
-          JQ_P: ${{secrets.JQ_P}}
+          #JQ_A: ${{secrets.JQ_A}}
+          #JQ_P: ${{secrets.JQ_P}}
           BARK_URL: ${{secrets.BARK_URL}}
         run: |
           mkdir .cache
